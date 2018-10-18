@@ -8,11 +8,13 @@ class App extends Component {
             <div className="App">
                 Hello App
                 <br/>
-                <Link to="/account">Account</Link>
+                <Link to="/">Main page</Link>
                 <br/>
                 <Link to="/about">About</Link>
                 <br/>
-                <Link to="/login">Login</Link>
+                <Link to="/account">Account</Link>
+                <br/>
+                <Link to="/login">login</Link>
                 <br/>
             </div>
         );
