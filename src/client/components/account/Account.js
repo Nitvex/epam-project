@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {applyRecord} from '../../actions/applyRecord';
 import {declineRecord} from '../../actions/declineRecord';
 import {fetchMasters} from "../../actions/fetchMasters";
 import Header from '../main/Header/Header';
+import './style.css'
 
 const mapStateToProps = state => {
     return {
@@ -49,35 +49,58 @@ class connectedAccount extends Component {
 
     render() {
         return (
-            <div>
+            <div className="account">
                 <Header/>
-                Account
-                <button onClick={this.apply}>Apply</button>
+                <div className="w-100 mt-3 px-5">
+                    <label className="w-25 label">Choose time</label>
+                    <label className="w-25 label">Choose place</label>
+                    <label className="w-25 label">Choose master</label>
+                </div>
+                <div className="input-group mt-0 px-5">
+                    <input className="form-control" type="text" ref={(time) => {
+                        this.time = time;
+                    }}/>
+                    <input className="form-control" type="text" ref={(place) => {
+                        this.place = place;
+                    }}/>
 
+                    <select className="custom-select" ref={(masters) => {
+                        this.masters = masters;
+                    }}>
+                        {
+                            this.props.masters.map(m => {
+                                return <option key={m}>{m}</option>
+                            })
+                        }
+                    </select>
 
-                <input type="text" ref={(time) => {
-                    this.time = time;
-                }}/>
-                <input type="text" ref={(place) => {
-                    this.place = place;
-                }}/>
-                <select ref={(masters) => {
-                    this.masters = masters;
-                }}>
-                    {
-                        this.props.masters.map(m => {
-                            return <option key={m}>{m}</option>
-                        })
-                    }
-                </select>
+                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Apply
+                    </button>
+                </div>
 
-                <ul>
+                <p className="text-center mt-3 text-uppercase text-black">You're signed for the following</p>
+                <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or decline record. Thank you for choosing us!</p>
+                <table className="table-striped table-bordered records bg-light">
+                    <thead>
+                    <tr>
+                        <th className="text-center bg-light">Time</th>
+                        <th className="text-center bg-light">Place</th>
+                        <th className="text-center bg-light">Master</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     {this.props.records.map((r) => {
-                        return <li key={r.time}>{r.time} | {r.place} | {r.master}</li>
-                        /*<button onClick={this.delete(r.time, r.place, r.master)}>X</button>*/
-
+                        return (
+                            <tr key={r.time + r.place + r.master}>
+                                <td className="text-center">{r.time}</td>
+                                <td className="text-center">{r.place}</td>
+                                <td className="text-center">{r.master}</td>
+                            </tr>
+                        )
                     })}
-                </ul>
+                    </tbody>
+                </table>
+
             </div>
         );
     }

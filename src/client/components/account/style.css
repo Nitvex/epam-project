@@ -1,0 +1,15 @@
+.label {
+    font-size: 1rem;
+    color: gray;
+}
+
+.records {
+    width: 94vw;
+    margin: 1vw 3vw;
+}
+
+.account{
+    background-color: #f9eed1;
+    height:100%;
+}
+

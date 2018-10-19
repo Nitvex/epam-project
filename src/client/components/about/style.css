@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     font-size: 1.2rem;
+    background-color: #f9eed1;
 }
 
 .welcome {

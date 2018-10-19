@@ -3,8 +3,21 @@ import './App.css';
 import Header from './Header/Header';
 import Slider from './Slider/Slider';
 import Location from './Location/Location';
+import {logout} from "../../actions/logout";
+import {authenticate} from "../../actions/authenticate";
+import {connect} from "react-redux";
 
-class App extends Component {
+
+const mapStateToProps = state => {
+    return {isAuthenticated: state.isAuthenticated};
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        authenticate: () => dispatch(authenticate()),
+    };
+};
+
+class connectedApp extends Component {
 
     constructor(props) {
         super(props);
@@ -54,6 +67,12 @@ class App extends Component {
         }
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('authenticated') === 'true') {
+            this.props.authenticate();
+        }
+    }
+
     render() {
         return (
             <div className="App">
@@ -63,7 +82,8 @@ class App extends Component {
                 <div className="locations">
                     {
                         this.state.locations.map((location) => {
-                            return <Location location={location.location}
+                            return <Location key={location.location + location.time + location.master}
+                                             location={location.location}
                                              time={location.time}
                                              subway={location.subway}/>
                         })
@@ -74,4 +94,5 @@ class App extends Component {
     }
 }
 
+const App = connect(mapStateToProps, mapDispatchToProps)(connectedApp);
 export default App;

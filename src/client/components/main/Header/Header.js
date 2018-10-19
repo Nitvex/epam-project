@@ -22,6 +22,8 @@ class connectedHeader extends Component {
 
     logout = () => {
         this.props.logout();
+        localStorage.setItem('authenticated', 'false');
+        console.log(localStorage.getItem('authenticated'));
     };
 
     render() {
@@ -33,7 +35,8 @@ class connectedHeader extends Component {
                     <Link to="/account" className="nav-item nav-link" href="#">Account</Link>
                     {
                         this.props.isAuthenticated ?
-                            <Link exact to="/" onClick={this.logout} href="#" className="nav-item nav-link">Log out</Link> :
+                            <Link exact to="/" onClick={this.logout} href="#" className="nav-item nav-link">Log
+                                out</Link> :
                             <Link to="/login" className="nav-item nav-link" href="#">Login</Link>
                     }
                 </nav>

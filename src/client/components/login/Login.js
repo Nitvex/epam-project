@@ -21,20 +21,20 @@ class connectedLogin extends Component {
         super(props);
     }
 
-    handleClick = () => {
-        console.log(this.props.isAuthenticated);
-        this.props.isAuthenticated ?
-            this.props.logout() :
+
+    componentDidMount() {
+        if (localStorage.getItem('authenticated') === 'true') {
             this.props.authenticate();
-    };
+        }
+    }
 
     formSubmit = () => {
         let username = this.username.value;
         let password = this.password.value;
         if (username === "user" && password === "12345") {
             this.props.authenticate();
+            localStorage.setItem('authenticated', 'true');
         }
-        console.log(this.props.isAuthenticated);
     };
 
     render() {
@@ -81,8 +81,4 @@ class connectedLogin extends Component {
 const Login = connect(mapStateToProps, mapDispatchToProps)(connectedLogin);
 
 export default Login;
-/*
-                {this.props.isAuthenticated ?
-                    <button onClick={this.handleClick}>Sign out</button> :
-                    <button onClick={this.handleClick}>Sign in</button>
-                }*/
+
