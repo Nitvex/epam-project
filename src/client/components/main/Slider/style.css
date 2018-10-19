@@ -7,10 +7,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateY(-50%);
+    transform: translate(30%,-50%);
     font-size: 2rem;
-
 }
-.caption{
+
+.caption {
     color: #cc9933;
+}
+
+.black {
+    background-color: rgba(0, 0, 0, 0.8);
+    width:40%;
+    padding: 0.5rem;
 }

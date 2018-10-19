@@ -16,24 +16,30 @@ class Slider extends Component {
                         <img className="d-block w-100" src={require('../../../assets/images/1.jpg')}
                              alt="First slide"/>
                         <div className="carousel-caption d-none d-md-block">
-                            <p className="caption">Best masters</p>
-                            <p className="caption">Our clients always satisfied</p>
+                            <div className="black">
+                                <p className="caption">Best masters</p>
+                                <p className="caption">Our clients always satisfied</p>
+                            </div>
                         </div>
                     </div>
                     <div className="carousel-item">
                         <img className="d-block w-100" src={require('../../../assets/images/2.jpg')}
                              alt="Second slide"/>
                         <div className="carousel-caption d-none d-md-block">
-                            <p className="caption">Sign up!</p>
-                            <p className="caption">Consider, you're already brutal</p>
+                            <div className="black">
+                                <p className="caption">Sign up!</p>
+                                <p className="caption">Consider, you're already brutal</p>
+                            </div>
                         </div>
                     </div>
                     <div className="carousel-item">
                         <img className="d-block w-100" src={require('../../../assets/images/3.jpg')}
                              alt="Third slide"/>
                         <div className="carousel-caption d-none d-md-block">
-                            <p className="caption">Cool atmosphere</p>
-                            <p className="caption">You feel?</p>
+                            <div className="black">
+                                <p className="caption">Cool atmosphere</p>
+                                <p className="caption">You feel?</p>
+                            </div>
                         </div>
                     </div>
                 </div>
