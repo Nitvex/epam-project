@@ -1,5 +1,5 @@
 import {FETCH_MASTERS} from "../constants/action-types";
-import {addMaster} from "../actions/addMaster";
+import {addMasters} from "../actions/addMasters";
 
 export const fetchMiddleware = ({dispatch}) => next => action => {
     let requestOptions = {
@@ -14,9 +14,8 @@ export const fetchMiddleware = ({dispatch}) => next => action => {
         fetch('http://127.0.0.1:3000/account', requestOptions).then((response) => {
             return response.json();
         }).then((masters) => {
-            masters.forEach((master) => {
-                dispatch(addMaster(master))
-            });
+            dispatch(addMasters(...[masters]));
+
         });
     }
 

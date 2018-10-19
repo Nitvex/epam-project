@@ -3,4 +3,4 @@ export const DECLINE_RECORD = "DECLINE_RECORD";
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOGOUT = "LOGOUT";
 export const FETCH_MASTERS = "FETCH_MASTERS";
-export const ADD_MASTER = "ADD_MASTER";
+export const ADD_MASTERS = "ADD_MASTERS";

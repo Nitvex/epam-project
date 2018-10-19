@@ -1,9 +1,11 @@
-import {APPLY_RECORD, DECLINE_RECORD, AUTHENTICATE, LOGOUT, ADD_MASTER} from "../constants/action-types";
+import {APPLY_RECORD, DECLINE_RECORD, AUTHENTICATE, LOGOUT, ADD_MASTERS} from "../constants/action-types";
 
 const initialState = {
     records: [],
     isAuthenticated: false,
-    masters: []
+    masters: [],
+    times: [],
+    places: [],
 };
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -18,8 +20,8 @@ const rootReducer = (state = initialState, action) => {
             return {...state, isAuthenticated: true};
         case LOGOUT:
             return {...state, isAuthenticated: false};
-        case ADD_MASTER:
-            return {...state, masters: [...state.masters, action.payload]};
+        case ADD_MASTERS:
+            return {...state, masters: [...state.masters, ...action.payload]};
         default:
             return state;
     }
