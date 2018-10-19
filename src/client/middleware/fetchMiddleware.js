@@ -1,5 +1,6 @@
-import {FETCH_INFO} from "../constants/action-types";
+import {FETCH_INFO, FETCH_LOCATIONS} from "../constants/action-types";
 import {addInfo} from "../actions/addInfo";
+import {addLocations} from "../actions/addLocations";
 
 export const fetchMiddleware = ({dispatch}) => next => action => {
     let requestOptions = {
@@ -9,13 +10,35 @@ export const fetchMiddleware = ({dispatch}) => next => action => {
         cache: 'default'
     };
 
-    if (action.type === FETCH_INFO) {
-        fetch('http://127.0.0.1:3000/account', requestOptions).then((response) => {
+    let actionObject = {
+        url: '',
+        method: null
+    };
+
+    switch (action.type) {
+        case FETCH_INFO:
+            actionObject.url = 'account';
+            actionObject.method = addInfo;
+            break;
+        case FETCH_LOCATIONS:
+            actionObject.url = 'locations';
+            actionObject.method = addLocations;
+            break;
+        default:
+            break;
+    }
+    console.log(action.type);
+    console.log(actionObject);
+
+    if (actionObject.method) {
+        fetch(`http://127.0.0.1:3000/${actionObject.url}`, requestOptions).then((response) => {
             return response.json();
-        }).then((infoForRecord) => {
-            dispatch(addInfo(infoForRecord));
+        }).then((items) => {
+            console.log("here");
+            dispatch(actionObject.method(items));
         });
     }
+
 
     next(action);
 };
