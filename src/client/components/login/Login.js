@@ -45,7 +45,7 @@ class connectedLogin extends Component {
         switch (this.state.wrongInput) {
             case true:
                 message = <p className="text-danger">
-                    Entered password or(and) username was wrong. Check your input and please try
+                    Entered password or(and) username was wrong. Check your input please and try
                     again
                 </p>;
                 break;

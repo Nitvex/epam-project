@@ -4,6 +4,8 @@
     width: 20vw;
     height: 10vw;
     display: inline-block;
+    min-width: 300px;
+    min-height: 160px;
 }
 
 .location {
