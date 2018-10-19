@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {applyRecord} from '../../actions/applyRecord';
 import {declineRecord} from '../../actions/declineRecord';
-import {fetchMasters} from "../../actions/fetchMasters";
+import {fetchInfo} from "../../actions/fetchInfo";
 import Header from '../main/Header/Header';
 import './style.css'
 
@@ -10,6 +10,13 @@ const mapStateToProps = state => {
     return {
         records: state.records,
         masters: state.masters,
+        times: state.times,
+        places: state.places,
+        infoForRecord: [
+            state.times,
+            state.places,
+            state.masters,
+        ]
     };
 };
 
@@ -17,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     return {
         applyRecord: (id, time, place, master) => dispatch(applyRecord(id, time, place, master)),
         declineRecord: (id, time, place, master) => dispatch(declineRecord(id, time, place, master)),
-        fetchMasters: () => dispatch(fetchMasters()),
+        fetchInfo: () => dispatch(fetchInfo()),
     };
 };
 
@@ -33,7 +40,7 @@ class connectedAccount extends Component {
 
     componentDidMount() {
         if (this.props.masters.length === 0) {
-            this.props.fetchMasters();
+            this.props.fetchInfo();
         }
     }
 
@@ -41,10 +48,11 @@ class connectedAccount extends Component {
     apply = () => {
         let time = this.time.value;
         let place = this.place.value;
-        let master = this.masters.value;
+        let master = this.master.value;
         this.props.applyRecord(this.state.id, time, place, master);
         this.setState({id: this.state.id + 1});
         console.log(this.state.id);
+        console.log(this.props.infoForRecord);
     };
 
 
@@ -63,22 +71,30 @@ class connectedAccount extends Component {
                     <label className="w-25 label">Choose master</label>
                 </div>
                 <div className="input-group mt-0 px-5">
-                    <input className="form-control" type="text" ref={(time) => {
-                        this.time = time;
-                    }}/>
-                    <input className="form-control" type="text" ref={(place) => {
-                        this.place = place;
-                    }}/>
-
-                    <select className="custom-select" ref={(masters) => {
-                        this.masters = masters;
-                    }}>
-                        {
-                            this.props.masters.map(m => {
-                                return <option key={m}>{m}</option>
-                            })
-                        }
-                    </select>
+                    {
+                        this.props.infoForRecord.map((infoItem, index) => {
+                            return (
+                                <select className="custom-select" ref={(infoItem) => {
+                                    switch (index) {
+                                        case 0:
+                                            this.time = infoItem;
+                                            break;
+                                        case 1:
+                                            this.place = infoItem;
+                                            break;
+                                        case 2:
+                                            this.master = infoItem;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }}>
+                                    {infoItem.map((option) => {
+                                        return <option key={option}>{option}</option>
+                                    })}
+                                </select>)
+                        })
+                    }
 
                     <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Apply
                     </button>
@@ -102,8 +118,12 @@ class connectedAccount extends Component {
                                 <td className="text-center info">{r.time}</td>
                                 <td className="text-center info">{r.place}</td>
                                 <td className="text-center info">{r.master}</td>
-                                <button className="btn-primary button" onClick={this.decline.bind(this, r)}>Decline
-                                </button>
+                                <td>
+                                    <button className="btn-primary button"
+                                            onClick={this.decline.bind(this, r)}>
+                                        Decline
+                                    </button>
+                                </td>
                             </tr>
                         )
                     })}

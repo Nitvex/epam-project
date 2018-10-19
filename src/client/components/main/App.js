@@ -3,7 +3,6 @@ import './App.css';
 import Header from './Header/Header';
 import Slider from './Slider/Slider';
 import Location from './Location/Location';
-import {logout} from "../../actions/logout";
 import {authenticate} from "../../actions/authenticate";
 import {connect} from "react-redux";
 

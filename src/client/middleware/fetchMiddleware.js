@@ -1,5 +1,5 @@
-import {FETCH_MASTERS} from "../constants/action-types";
-import {addMasters} from "../actions/addMasters";
+import {FETCH_INFO} from "../constants/action-types";
+import {addInfo} from "../actions/addInfo";
 
 export const fetchMiddleware = ({dispatch}) => next => action => {
     let requestOptions = {
@@ -9,13 +9,11 @@ export const fetchMiddleware = ({dispatch}) => next => action => {
         cache: 'default'
     };
 
-
-    if (action.type === FETCH_MASTERS) {
+    if (action.type === FETCH_INFO) {
         fetch('http://127.0.0.1:3000/account', requestOptions).then((response) => {
             return response.json();
-        }).then((masters) => {
-            dispatch(addMasters(...[masters]));
-
+        }).then((infoForRecord) => {
+            dispatch(addInfo(infoForRecord));
         });
     }
 

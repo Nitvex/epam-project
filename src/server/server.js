@@ -26,7 +26,29 @@ let users = [
 ];
 
 let masters = [
-    "John", "Jerry", "Larry"
+    "John", "Jerry", "Larry", "Bill", "Shane", "Jenny", "Sally"
+];
+
+let times = [
+    "10:00", "10:30",
+    "11:00", "11:30",
+    "12:00", "12:30",
+    "13:00", "13:30",
+    "14:00", "14:30",
+    "15:00", "15:30",
+    "16:00", "16:30",
+    "17:00", "17:30",
+    "18:00", "18:30",
+    "19:00", "19:30",
+    "20:00", "20:30",
+    "21:00", "21:30",
+];
+
+let places = [
+    "Pushinskaya 12", "8th Krasnoarmeyskaya 4/5",
+    "Voskova 16", "Kirochnaya 9",
+    "M. Dudina, 32 K1", "Moskovkiy pr. 6",
+    "Prospekt Koroleva 2", "Pr. entuziastov, 33 K1"
 ];
 
 app.use(function (req, res, next) {
@@ -39,7 +61,10 @@ app.use(function (req, res, next) {
 
 app.get('/account', function (req, res) {
     console.log("/account requested");
-    res.send(masters);
+    let infoForRecord = {
+        masters, times, places
+    };
+    res.send(infoForRecord);
 });
 
 app.post('/login', function (req, res) {
