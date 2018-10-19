@@ -27,7 +27,7 @@ class Slider extends Component {
                              alt="Second slide"/>
                         <div className="carousel-caption d-none d-md-block">
                             <div className="black">
-                                <p className="caption">Sign up!</p>
+                                <p className="caption">Signed up?</p>
                                 <p className="caption">Consider, you're already brutal</p>
                             </div>
                         </div>

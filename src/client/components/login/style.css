@@ -1,0 +1,30 @@
+.login {
+    display: flex;
+    height: 90vh;
+    background-color: #f9eed1;
+}
+
+.form {
+    justify-content: center;
+    text-align: center;
+    margin: auto 0;
+    padding: 0 5rem;
+}
+
+.label {
+    float: left;
+}
+
+.btn {
+    width: 50%;
+    background-color: #d5a353;
+}
+
+.password-security {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.advertisement {
+    font-size: 1.5rem;
+}
