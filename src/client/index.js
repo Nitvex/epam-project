@@ -8,6 +8,7 @@ import Account from './components/account/Account';
 import Login from './components/login/Login';
 /* Routing */
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
+import {PrivateRoute} from "./components/PrivateRouter/PrivateRouter";
 /* Store */
 import {Provider} from "react-redux";
 import store from "./store/index";
@@ -21,7 +22,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={App}/>
                 <Route path="/about" component={About}/>
-                <Route path="/account" component={Account}/>
+                <PrivateRoute path="/account" component={Account}/>
                 <Route path="/login" component={Login}/>
             </Switch>
         </Router>
