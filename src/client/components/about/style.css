@@ -1,0 +1,15 @@
+.about {
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+}
+
+.welcome {
+    font-size: 3rem;
+}
+
+.no-women {
+    color: #cc9933;
+    font-size: 1.5rem;
+}
