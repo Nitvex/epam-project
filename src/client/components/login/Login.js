@@ -59,7 +59,7 @@ class connectedLogin extends Component {
                                ref={((username) => this.username = username)}/>
                         <br/>
                         <label className="label">Password</label>
-                        <input type="text"
+                        <input type="password"
                                className="form-control"
                                placeholder="Enter your password"
                                ref={((password) => this.password = password)}/>
