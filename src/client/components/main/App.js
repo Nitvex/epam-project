@@ -67,11 +67,6 @@ class connectedApp extends Component {
         }
     }
 
-    componentDidMount() {
-        if (localStorage.getItem('authenticated') === 'true') {
-            this.props.authenticate();
-        }
-    }
 
     render() {
         return (

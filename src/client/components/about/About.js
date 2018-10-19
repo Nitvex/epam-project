@@ -16,11 +16,6 @@ class connectedAbout extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        if (localStorage.getItem('authenticated') === 'true') {
-            this.props.authenticate();
-        }
-    }
 
     render() {
         return (
