@@ -19,14 +19,11 @@ class connectedLogin extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-
-    componentDidMount() {
-        if (localStorage.getItem('authenticated') === 'true') {
-            this.props.authenticate();
+        this.state = {
+            wrongInput: ''
         }
     }
+
 
     formSubmit = () => {
         let username = this.username.value;
@@ -34,10 +31,32 @@ class connectedLogin extends Component {
         if (username === "user" && password === "12345") {
             this.props.authenticate();
             localStorage.setItem('authenticated', 'true');
+            this.setState({wrongInput: false});
+        } else {
+            this.username.value = '';
+            this.password.value = '';
+            this.setState({wrongInput: true});
         }
     };
 
     render() {
+        let message = '';
+        switch (this.state.wrongInput) {
+            case true:
+                message = <p className="text-danger">
+                    Entered password or(and) username was wrong. Check your input and please try
+                    again
+                </p>;
+                break;
+            case false:
+                message = <p className="text-success">
+                    Congratulations! Now you're logged in!
+                </p>;
+                break;
+            default:
+                message = '';
+                break;
+        }
         return (
             <div>
                 <Header/>
@@ -68,6 +87,7 @@ class connectedLogin extends Component {
                             or at least 7 characters, including a number, and a
                             lowercase letter.
                         </p>
+                        {message}
                         <button type="submit" className="btn">Login</button>
                     </form>
                 </div>
