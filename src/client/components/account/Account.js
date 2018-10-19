@@ -51,8 +51,6 @@ class connectedAccount extends Component {
         let master = this.master.value;
         this.props.applyRecord(this.state.id, time, place, master);
         this.setState({id: this.state.id + 1});
-        console.log(this.state.id);
-        console.log(this.props.infoForRecord);
     };
 
 
@@ -74,7 +72,7 @@ class connectedAccount extends Component {
                     {
                         this.props.infoForRecord.map((infoItem, index) => {
                             return (
-                                <select className="custom-select" ref={(infoItem) => {
+                                <select key={index} className="custom-select" ref={(infoItem) => {
                                     switch (index) {
                                         case 0:
                                             this.time = infoItem;

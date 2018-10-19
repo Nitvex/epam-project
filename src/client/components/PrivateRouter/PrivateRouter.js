@@ -10,7 +10,7 @@ class connectedPrivateRoute extends Component {
 
     render() {
         return (
-            (localStorage.getItem('authenticated') === 'true') ?
+            (localStorage.getItem('authenticated') === 'yes') ?
                 <Route {...this.props}/>
                 :
                 <Redirect

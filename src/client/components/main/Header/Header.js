@@ -23,14 +23,14 @@ class connectedHeader extends Component {
     }
 
     componentDidMount() {
-        if (localStorage.getItem('authenticated') === 'true') {
+        if (localStorage.getItem('authenticated') === 'yes') {
             this.props.authenticate();
         }
     }
 
     logout = () => {
         this.props.logout();
-        localStorage.setItem('authenticated', 'false');
+        localStorage.setItem('authenticated', 'no');
     };
 
     render() {

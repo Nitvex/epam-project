@@ -3,6 +3,7 @@ import {authenticate} from "../../actions/authenticate";
 import {logout} from "../../actions/logout";
 import {connect} from 'react-redux';
 import Header from '../main/Header/Header';
+import {Redirect} from "react-router-dom";
 import './style.css';
 
 const mapStateToProps = state => {
@@ -30,7 +31,7 @@ class connectedLogin extends Component {
         let password = this.password.value;
         if (username === "user" && password === "12345") {
             this.props.authenticate();
-            localStorage.setItem('authenticated', 'true');
+            localStorage.setItem('authenticated', 'yes');
             this.setState({wrongInput: false});
         } else {
             this.username.value = '';
@@ -49,9 +50,11 @@ class connectedLogin extends Component {
                 </p>;
                 break;
             case false:
-                message = <p className="text-success">
-                    Congratulations! Now you're logged in!
-                </p>;
+                message = <Redirect
+                    to={{
+                        pathname: '/account',
+                    }}
+                />;
                 break;
             default:
                 message = '';

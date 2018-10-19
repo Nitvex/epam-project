@@ -27,14 +27,11 @@ export const fetchMiddleware = ({dispatch}) => next => action => {
         default:
             break;
     }
-    console.log(action.type);
-    console.log(actionObject);
 
     if (actionObject.method) {
         fetch(`http://127.0.0.1:3000/${actionObject.url}`, requestOptions).then((response) => {
             return response.json();
         }).then((items) => {
-            console.log("here");
             dispatch(actionObject.method(items));
         });
     }
