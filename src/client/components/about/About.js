@@ -11,7 +11,7 @@ class About extends Component {
                     <img className="w-50" src={require('../../assets/images/about.jpg')}
                          alt="About"/>
                     <div className="w-50 p-5">
-                        <h2 className="welcome text-center">Welcome to out barbershop</h2>
+                        <h2 className="welcome text-center">Welcome to our barbershop</h2>
                         <p className="no-women text-center">
                             There are no women here, no idle talk about anything, only the atmosphere of brutality
                             reigns here, inspired by European standards of quality and style.
