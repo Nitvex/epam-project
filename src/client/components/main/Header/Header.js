@@ -4,6 +4,7 @@ import './style.css';
 import {connect} from "react-redux";
 import {logout} from "../../../actions/logout";
 import {authenticate} from "../../../actions/authenticate";
+import {resetInput} from "../../../actions/resetInput";
 
 const mapStateToProps = state => {
     return {isAuthenticated: state.isAuthenticated};
@@ -13,6 +14,7 @@ const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(logout()),
         authenticate: () => dispatch(authenticate()),
+        resetInput: () => dispatch(resetInput()),
     };
 };
 
@@ -30,6 +32,7 @@ class connectedHeader extends Component {
 
     logout = () => {
         this.props.logout();
+        this.props.resetInput();
         localStorage.setItem('authenticated', 'no');
     };
 
@@ -41,7 +44,7 @@ class connectedHeader extends Component {
                     <Link to="/about" className="nav-item nav-link" href="#">About</Link>
                     <Link to="/account" className="nav-item nav-link" href="#">Account</Link>
                     {
-                        (this.props.isAuthenticated) ?
+                        (localStorage.getItem('authenticated') === 'yes') ?
                             <Link exact to="/" onClick={this.logout} href="#" className="nav-item nav-link">Log
                                 out</Link> :
                             <Link to="/login" className="nav-item nav-link" href="#">Login</Link>

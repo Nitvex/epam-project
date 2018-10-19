@@ -1,18 +1,25 @@
 import React, {Component} from 'react';
-import {authenticate} from "../../actions/authenticate";
+import {tryAuthenticate} from "../../actions/tryAuthenticate";
 import {logout} from "../../actions/logout";
 import {connect} from 'react-redux';
 import Header from '../main/Header/Header';
 import {Redirect} from "react-router-dom";
 import './style.css';
+import {resetInput} from "../../actions/resetInput";
 
 const mapStateToProps = state => {
-    return {isAuthenticated: state.isAuthenticated};
+    return {
+        isAuthenticated: state.isAuthenticated,
+        correctInput: state.correctInput,
+    };
 };
 const mapDispatchToProps = dispatch => {
     return {
-        authenticate: () => dispatch(authenticate()),
-        logout: () => dispatch(logout())
+        tryAuthenticate: (username, password) => {
+            dispatch(tryAuthenticate(username, password));
+        },
+        logout: () => dispatch(logout()),
+        resetInput: () => dispatch(resetInput()),
     };
 };
 
@@ -20,36 +27,28 @@ class connectedLogin extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            wrongInput: ''
-        }
     }
 
+    componentDidMount() {
+        this.props.resetInput();
+    }
 
     formSubmit = () => {
         let username = this.username.value;
         let password = this.password.value;
-        if (username === "user" && password === "12345") {
-            this.props.authenticate();
-            localStorage.setItem('authenticated', 'yes');
-            this.setState({wrongInput: false});
-        } else {
-            this.username.value = '';
-            this.password.value = '';
-            this.setState({wrongInput: true});
-        }
+        this.props.tryAuthenticate(username, password);
     };
 
     render() {
         let message = '';
-        switch (this.state.wrongInput) {
-            case true:
+        switch (this.props.correctInput) {
+            case 'wrongInput':
                 message = <p className="text-danger">
                     Entered password or(and) username was wrong. Check your input please and try
                     again
                 </p>;
                 break;
-            case false:
+            case true:
                 message = <Redirect
                     to={{
                         pathname: '/account',

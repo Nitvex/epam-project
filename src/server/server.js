@@ -1,10 +1,10 @@
 let express = require("express");
-let bodyParser = require("body-parser");
 let path = require('path');
-
+let bodyParser = require("body-parser");
 let app = express();
 
-let jsonParser = bodyParser.json();
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 
@@ -115,9 +115,16 @@ app.get('/locations', function (req, res) {
     res.send(locations);
 });
 
-app.post('/login', function (req, res) {
-    console.log("/login requested");
-    res.send();
+app.post('/authenticate', function (req, res) {
+    console.log("/authenticate requested");
+    let found = false;
+    for (let user of users) {
+        if ((user.username === req.query.username) &&
+            (user.password === req.query.password)) {
+            found = true;
+        }
+    }
+    found ? res.end(JSON.stringify({status: "ok"})) : res.end(JSON.stringify({status: "not_found"}));
 });
 
 

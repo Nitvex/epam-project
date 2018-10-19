@@ -6,3 +6,7 @@ export const FETCH_INFO = "FETCH_INFO";
 export const ADD_INFO = "ADD_INFO";
 export const FETCH_LOCATIONS = "FETCH_LOCATIONS";
 export const ADD_LOCATIONS = "ADD_LOCATIONS";
+export const TRY_AUTHENTICATE = "TRY_AUTHENTICATE";
+export const WRONG_INPUT = "WRONG_INPUT";
+export const CORRECT_INPUT = "CORRECT_INPUT";
+export const RESET_INPUT = "RESET_INPUT";

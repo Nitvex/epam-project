@@ -1,4 +1,14 @@
-import {APPLY_RECORD, DECLINE_RECORD, AUTHENTICATE, LOGOUT, ADD_INFO, ADD_LOCATIONS} from "../constants/action-types";
+import {
+    APPLY_RECORD,
+    DECLINE_RECORD,
+    AUTHENTICATE,
+    LOGOUT,
+    ADD_INFO,
+    ADD_LOCATIONS,
+    WRONG_INPUT,
+    CORRECT_INPUT,
+    RESET_INPUT
+} from "../constants/action-types";
 
 const initialState = {
     records: [],
@@ -7,6 +17,7 @@ const initialState = {
     times: [],
     places: [],
     locations: [],
+    correctInput: false,
 };
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -31,6 +42,18 @@ const rootReducer = (state = initialState, action) => {
         case ADD_LOCATIONS:
             return {
                 ...state, locations: [...state.locations, ...action.payload]
+            };
+        case WRONG_INPUT:
+            return {
+                ...state, correctInput: 'wrongInput'
+            };
+        case CORRECT_INPUT:
+            return {
+                ...state, correctInput: true
+            };
+        case RESET_INPUT:
+            return {
+                ...state, correctInput: false
             };
         default:
             return state;
