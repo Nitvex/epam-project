@@ -15,8 +15,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        applyRecord: (time, place, master) => dispatch(applyRecord(time, place, master)),
-        declineRecord: (time, place, master) => dispatch(declineRecord(time, place, master)),
+        applyRecord: (id, time, place, master) => dispatch(applyRecord(id, time, place, master)),
+        declineRecord: (id, time, place, master) => dispatch(declineRecord(id, time, place, master)),
         fetchMasters: () => dispatch(fetchMasters()),
     };
 };
@@ -26,6 +26,9 @@ class connectedAccount extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            id: 1,
+        }
     }
 
     componentDidMount() {
@@ -39,13 +42,16 @@ class connectedAccount extends Component {
         let time = this.time.value;
         let place = this.place.value;
         let master = this.masters.value;
-        this.props.applyRecord(time, place, master);
+        this.props.applyRecord(this.state.id, time, place, master);
+        this.setState({id: this.state.id + 1});
+        console.log(this.state.id);
     };
 
-    delete = (time, place, master) => {
-        this.props.declineRecord(time, place, master);
-    };
 
+    decline = (record) => {
+        let {id, time, place, master} = record;
+        this.props.declineRecord(id, time, place, master);
+    };
 
     render() {
         return (
@@ -79,7 +85,8 @@ class connectedAccount extends Component {
                 </div>
 
                 <p className="text-center mt-3 text-uppercase text-black">You're signed for the following</p>
-                <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or decline record. Thank you for choosing us!</p>
+                <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or decline record.
+                    Thank you for choosing us!</p>
                 <table className="table-striped table-bordered records bg-light">
                     <thead>
                     <tr>
@@ -91,10 +98,12 @@ class connectedAccount extends Component {
                     <tbody>
                     {this.props.records.map((r) => {
                         return (
-                            <tr key={r.time + r.place + r.master}>
-                                <td className="text-center">{r.time}</td>
-                                <td className="text-center">{r.place}</td>
-                                <td className="text-center">{r.master}</td>
+                            <tr key={r.id}>
+                                <td className="text-center info">{r.time}</td>
+                                <td className="text-center info">{r.place}</td>
+                                <td className="text-center info">{r.master}</td>
+                                <button className="btn-primary button" onClick={this.decline.bind(this, r)}>Decline
+                                </button>
                             </tr>
                         )
                     })}

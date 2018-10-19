@@ -10,7 +10,10 @@ const rootReducer = (state = initialState, action) => {
         case APPLY_RECORD:
             return {...state, records: [...state.records, action.payload]};
         case DECLINE_RECORD:
-            return {...state, records: [...state.records, action.payload]};
+            let records = [...state.records].filter((r) => {
+                return r.id !== action.payload.id
+            });
+            return {...state, records: [...records]};
         case AUTHENTICATE:
             return {...state, isAuthenticated: true};
         case LOGOUT:
