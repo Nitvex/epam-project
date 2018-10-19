@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {authenticate} from "../../actions/authenticate";
 import {logout} from "../../actions/logout";
 import {connect} from 'react-redux';
-import Header from '../main/Header/header';
+import Header from '../main/Header/Header';
 
 const mapStateToProps = state => {
     return {isAuthenticated: state.isAuthenticated};

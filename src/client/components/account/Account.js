@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {applyRecord} from '../../actions/applyRecord';
 import {declineRecord} from '../../actions/declineRecord';
 import {fetchMasters} from "../../actions/fetchMasters";
-import Header from '../main/Header/header';
+import Header from '../main/Header/Header';
 
 const mapStateToProps = state => {
     return {

@@ -1,0 +1,11 @@
+.carousel-inner {
+    height: 90vh;
+    position: relative;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%);
+}

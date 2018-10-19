@@ -17,18 +17,27 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env','@babel/preset-react'],
-                        plugins:['@babel/plugin-proposal-class-properties']
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 },
                 exclude: [
                     path.resolve(__dirname, "node_modules"),
-                    path.resolve(__dirname,"src/server")
+                    path.resolve(__dirname, "src/server")
                 ],
             },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
             }
         ]
     },
