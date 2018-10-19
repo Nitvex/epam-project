@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {authenticate} from "../../actions/authenticate";
 import {logout} from "../../actions/logout";
 import {connect} from 'react-redux';
+import Header from '../main/Header/header';
 
 const mapStateToProps = state => {
     return {isAuthenticated: state.isAuthenticated};
@@ -30,16 +31,8 @@ class connectedLogin extends Component {
     render() {
         return (
             <div>
+                <Header/>
                 login
-                <br/>
-                <Link to="/">Main page</Link>
-                <br/>
-                <Link to="/about">About</Link>
-                <br/>
-                <Link to="/account">Account</Link>
-                <br/>
-                <Link to="/login">login</Link>
-                <br/>
                 {this.props.isAuthenticated ?
                     <button onClick={this.handleClick}>Sign out</button> :
                     <button onClick={this.handleClick}>Sign in</button>

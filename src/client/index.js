@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+/* Components */
 import App from './components/main/App';
 import About from './components/about/About';
 import Account from './components/account/Account';
 import Login from './components/login/Login';
+/* Routing */
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
+/* Store */
 import {Provider} from "react-redux";
 import store from "./store/index";
+/* Bootstrap */
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 ReactDOM.render(
     <Provider store={store}>

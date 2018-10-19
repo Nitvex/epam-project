@@ -1,0 +1,10 @@
+.header {
+    background-color: #d5a353;
+    height:10vh;
+    justify-content: center;
+}
+.nav-item.nav-link{
+    height: 5vh;
+    font-size: 32px;
+    color:white;
+}

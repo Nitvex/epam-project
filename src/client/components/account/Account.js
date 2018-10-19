@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {applyRecord} from '../../actions/applyRecord';
 import {declineRecord} from '../../actions/declineRecord';
 import {fetchMasters} from "../../actions/fetchMasters";
+import Header from '../main/Header/header';
 
 const mapStateToProps = state => {
     return {
@@ -49,17 +50,8 @@ class connectedAccount extends Component {
     render() {
         return (
             <div>
+                <Header/>
                 Account
-                <br/>
-                <Link to="/">Main page</Link>
-                <br/>
-                <Link to="/about">About</Link>
-                <br/>
-                <Link to="/account">Account</Link>
-                <br/>
-                <Link to="/login">login</Link>
-                <br/>
-
                 <button onClick={this.apply}>Apply</button>
 
 
