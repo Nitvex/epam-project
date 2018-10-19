@@ -1,0 +1,20 @@
+.location-container {
+    border: 2px dotted #d5a353;
+    padding: 5px;
+    width: 20vw;
+    height: 10vw;
+    display: inline-block;
+}
+
+.location {
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    color: #cc9933;
+    font-size: 1.5rem;
+    height: 100%;
+    width: 100%;
+}
+
+
+
