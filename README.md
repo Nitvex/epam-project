@@ -19,7 +19,7 @@ Built using React+Redux+Bootstrap. Bundled by webpack
  - Requires authorization
  - If requested without authorization then redirects to login page
  - Here user can enroll in master
- - User can cancel record
+ - User can cancel appointment
  - Enrollment and cancellation make requests to server, which stores data about different users. So, different users see different data.
  - Time, places, names of masters are requested from server
 

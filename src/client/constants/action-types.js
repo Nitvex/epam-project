@@ -1,17 +1,25 @@
-export const APPLY_RECORD = "APPLY_RECORD";
-export const CANCEL_RECORD = "CANCEL_RECORD";
-export const TRY_CANCEL_RECORD = "TRY_CANCEL_RECORD";
+
+/*Authentication*/
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOGOUT = "LOGOUT";
+export const TRY_AUTHENTICATE = "TRY_AUTHENTICATE";
+
+/*Getting information*/
 export const FETCH_INFO = "FETCH_INFO";
 export const ADD_INFO = "ADD_INFO";
 export const FETCH_LOCATIONS = "FETCH_LOCATIONS";
 export const ADD_LOCATIONS = "ADD_LOCATIONS";
-export const TRY_AUTHENTICATE = "TRY_AUTHENTICATE";
+
+/*Input*/
 export const WRONG_INPUT = "WRONG_INPUT";
 export const CORRECT_INPUT = "CORRECT_INPUT";
 export const RESET_INPUT = "RESET_INPUT";
-export const TRY_APPLY_RECORD = "TRY_APPLY_RECORD";
-export const GET_RECORDS = "GET_RECORDS";
-export const ADD_RECORDS = "ADD_RECORDS";
-export const DELETE_RECORDS = "DELETE_RECORDS";
+
+/*Appointments*/
+export const APPLY_APPOINTMENT = "APPLY_APPOINTMENT";
+export const TRY_MAKE_APPOINTMENT = "TRY_MAKE_APPOINTMENT";
+export const GET_APPOINTMENTS = "GET_APPOINTMENTS";
+export const ADD_APPOINTMENTS = "ADD_APPOINTMENTS";
+export const DELETE_APPOINTMENTS = "DELETE_APPOINTMENTS";
+export const CANCEL_APPOINTMENT = "CANCEL_APPOINTMENT";
+export const TRY_CANCEL_APPOINTMENT = "TRY_CANCEL_APPOINTMENT";

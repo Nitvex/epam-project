@@ -14,8 +14,8 @@ let places = require("./constants/places").places;
 let locations = require("./constants/locations").locations;
 
 
-/*Array to store records*/
-let userRecords = [
+/*Array to store appointments*/
+let userAppointments = [
     {
         username: 'user',
         id: 1,
@@ -63,10 +63,10 @@ app.use(function (req, res, next) {
 
 app.get('/account', function (req, res) {
     console.log("/account requested");
-    let infoForRecord = {
+    let infoForAppointment = {
         masters, times, places
     };
-    res.send(infoForRecord);
+    res.send(infoForAppointment);
 });
 
 app.get('/locations', function (req, res) {
@@ -75,14 +75,14 @@ app.get('/locations', function (req, res) {
 });
 
 
-app.post('/records', function (req, res) {
+app.post('/appointments', function (req, res) {
     if ((!req.body) || (!req.query)) {
         return res.sendStatus(400)
     }
-    console.log("/records requested");
+    console.log("/appointments requested");
     let {username, id, time, place, master} = req.query;
-    userRecords.push({username, id, time, place, master});
-    console.log(userRecords);
+    userAppointments.push({username, id, time, place, master});
+    console.log(userAppointments);
     res.send(JSON.stringify({status: "ok"}));
 });
 
@@ -103,12 +103,12 @@ app.post('/authenticate', function (req, res) {
 });
 
 
-app.post('/getrecords', function (req, res) {
-    console.log("/getrecords requested");
-    let records = [];
-    userRecords.forEach((u) => {
+app.post('/getappointments', function (req, res) {
+    console.log("/getappointments requested");
+    let appointments = [];
+    userAppointments.forEach((u) => {
         if (u.username === req.query.username) {
-            records.push({
+            appointments.push({
                 id: u.id,
                 time: u.time,
                 place: u.place,
@@ -117,15 +117,15 @@ app.post('/getrecords', function (req, res) {
         }
 
     });
-    res.send(records);
+    res.send(appointments);
 });
 
-app.post('/cancelrecord', function (req, res) {
-    console.log("/cancelrecord requested");
+app.post('/cancelappointment', function (req, res) {
+    console.log("/cancelappointment requested");
     let {username, id} = req.query;
-    userRecords.forEach((record, index) => {
-        if ((record.username.toString() === username) && (record.id.toString() === id)) {
-            userRecords.splice(index, 1);
+    userAppointments.forEach((appointment, index) => {
+        if ((appointment.username.toString() === username) && (appointment.id.toString() === id)) {
+            userAppointments.splice(index, 1);
         }
     });
     res.send(JSON.stringify({status: "ok"}));

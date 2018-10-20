@@ -1,11 +1,16 @@
-import {TRY_AUTHENTICATE, TRY_APPLY_RECORD, GET_RECORDS, TRY_CANCEL_RECORD} from "../constants/action-types";
+import {
+    TRY_AUTHENTICATE,
+    TRY_MAKE_APPOINTMENT,
+    GET_APPOINTMENTS,
+    TRY_CANCEL_APPOINTMENT
+} from "../constants/action-types";
 import {authenticate} from "../actions/authentication/authenticate";
 import {wrongInput} from "../actions/input/wrongInput";
 import {correctInput} from "../actions/input/correctInput";
-import {applyRecord} from "../actions/records/applyRecord";
-import {addRecords} from "../actions/records/addRecords";
-import {deleteRecords} from "../actions/records/deleteRecords";
-import {cancelRecord} from "../actions/records/cancelRecord";
+import {makeAppointment} from "../actions/appointments/makeAppointment";
+import {addAppointments} from "../actions/appointments/addAppointments";
+import {deleteAppointments} from "../actions/appointments/deleteAppointments";
+import {cancelAppointment} from "../actions/appointments/cancelAppointment";
 
 export const authenticateMiddleware = ({dispatch}) => next => action => {
 
@@ -32,37 +37,37 @@ export const authenticateMiddleware = ({dispatch}) => next => action => {
         });
     }
 
-    if (action.type === TRY_APPLY_RECORD) {
+    if (action.type === TRY_MAKE_APPOINTMENT) {
         let user = localStorage.getItem('user');
         let {id, time, place, master} = action.payload;
-        fetch(`http://127.0.0.1:3000/records?username=${user}&id=${id}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
+        fetch(`http://127.0.0.1:3000/appointments?username=${user}&id=${id}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {
-                dispatch(applyRecord(id, time, place, master));
+                dispatch(makeAppointment(id, time, place, master));
             }
         });
     }
 
-    if (action.type === GET_RECORDS) {
+    if (action.type === GET_APPOINTMENTS) {
         let user = localStorage.getItem('user');
-        fetch(`http://127.0.0.1:3000/getrecords?username=${user}`, requestOptions).then((response) => {
+        fetch(`http://127.0.0.1:3000/getappointments?username=${user}`, requestOptions).then((response) => {
             return response.json();
-        }).then((records) => {
-            dispatch(deleteRecords());
-            dispatch(addRecords(records));
+        }).then((appointments) => {
+            dispatch(deleteAppointments());
+            dispatch(addAppointments(appointments));
         });
     }
 
 
-    if (action.type === TRY_CANCEL_RECORD) {
+    if (action.type === TRY_CANCEL_APPOINTMENT) {
         let user = localStorage.getItem('user');
         let {id, time, place, master} = action.payload;
-        fetch(`http://127.0.0.1:3000/cancelrecord?username=${user}&id=${id}`, requestOptions).then((response) => {
+        fetch(`http://127.0.0.1:3000/cancelappointment?username=${user}&id=${id}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {
-                dispatch(cancelRecord(id, time, place, master));
+                dispatch(cancelAppointment(id, time, place, master));
             }
         });
     }

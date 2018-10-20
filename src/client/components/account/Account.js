@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {tryApplyRecord} from '../../actions/trying/tryApplyRecord';
-import {tryCancelRecord} from '../../actions/trying/tryCancelRecord';
+import {tryMakeAppointment} from '../../actions/trying/tryMakeAppointment';
+import {tryCancelAppointment} from '../../actions/trying/tryCancelAppointment';
 import {fetchInfo} from "../../actions/info/fetchInfo";
-import {getRecords} from "../../actions/records/getRecords";
+import {getAppointments} from "../../actions/appointments/getAppointments";
 import Header from '../main/Header/Header';
 import './style.css'
 
-const mapStateToProps = ({informationReducer, recordsReducer}) => {
+const mapStateToProps = ({informationReducer, appointmentsReducer}) => {
     return {
-        records: recordsReducer.records,
+        appointments: appointmentsReducer.appointments,
         masters: informationReducer.masters,
         times: informationReducer.times,
         places: informationReducer.places,
-        infoForRecord: [
+        infoForAppointment: [
             informationReducer.times,
             informationReducer.places,
             informationReducer.masters,
@@ -23,10 +23,10 @@ const mapStateToProps = ({informationReducer, recordsReducer}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        tryApplyRecord: (id, time, place, master) => dispatch(tryApplyRecord(id, time, place, master)),
-        tryCancelRecord: (id, time, place, master) => dispatch(tryCancelRecord(id, time, place, master)),
+        tryMakeAppointment: (id, time, place, master) => dispatch(tryMakeAppointment(id, time, place, master)),
+        tryCancelAppointment: (id, time, place, master) => dispatch(tryCancelAppointment(id, time, place, master)),
         fetchInfo: () => dispatch(fetchInfo()),
-        getRecords: () => dispatch(getRecords()),
+        getAppointments: () => dispatch(getAppointments()),
     };
 };
 
@@ -41,29 +41,29 @@ class connectedAccount extends Component {
         if (this.props.masters.length === 0) {
             this.props.fetchInfo();
         }
-        this.props.getRecords();
+        this.props.getAppointments();
     }
 
 
-    apply = () => {
+    make = () => {
         let time = this.time.value;
         let place = this.place.value;
         let master = this.master.value;
-        let records = this.props.records;
-        if (records.length === 0) {
-            this.props.tryApplyRecord(1, time, place, master);
+        let appointments = this.props.appointments;
+        if (appointments.length === 0) {
+            this.props.tryMakeAppointment(1, time, place, master);
         } else {
-            records.sort((a, b) => {
+            appointments.sort((a, b) => {
                 return b.id - a.id;
             });
-            this.props.tryApplyRecord(Number(records[0].id) + 1, time, place, master);
+            this.props.tryMakeAppointment(Number(appointments[0].id) + 1, time, place, master);
         }
     };
 
 
-    cancel = (record) => {
-        let {id, time, place, master} = record;
-        this.props.tryCancelRecord(id, time, place, master);
+    cancel = (appointment) => {
+        let {id, time, place, master} = appointment;
+        this.props.tryCancelAppointment(id, time, place, master);
     };
 
     render() {
@@ -77,7 +77,7 @@ class connectedAccount extends Component {
                 </div>
                 <div className="input-group mt-0 px-5">
                     {
-                        this.props.infoForRecord.map((infoItem, index) => {
+                        this.props.infoForAppointment.map((infoItem, index) => {
                             return (
                                 <select key={index} className="custom-select" ref={(infoItem) => {
                                     switch (index) {
@@ -101,23 +101,23 @@ class connectedAccount extends Component {
                         })
                     }
 
-                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Make an
+                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.make}>Make an
                         appointment
                     </button>
                 </div>
                 {
-                    this.props.records.length === 0 ?
-                        <p className="empty mt-5">Hmmm, it's empty here. Did you try to sign up?</p>
+                    this.props.appointments.length === 0 ?
+                        <p className="empty mt-5">Hmmm, it's empty here. Did you try to make an appointment?</p>
                         :
                         <div>
 
                             <p className="text-center mt-3 text-uppercase text-black">You've made appointments for the
                                 following</p>
                             <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or
-                                cancel record.
+                                cancel appointment.
                                 Thank you for choosing us!</p>
 
-                            <table className="table-striped table-bordered records bg-light">
+                            <table className="table-striped table-bordered appointments bg-light">
                                 <thead>
                                 <tr>
                                     <th className="text-center bg-light">Time</th>
@@ -126,7 +126,7 @@ class connectedAccount extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.props.records.map((r) => {
+                                {this.props.appointments.map((r) => {
                                     return (
                                         <tr key={r.id}>
                                             <td className="text-center info">{r.time}</td>
