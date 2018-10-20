@@ -97,36 +97,46 @@ class connectedAccount extends Component {
                     <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Apply
                     </button>
                 </div>
+                {
+                    this.props.records.length === 0 ?
+                        <p className="empty mt-5">Hmmm, it's empty here. Did you try to sign up?</p>
+                        :
+                        <div>
 
-                <p className="text-center mt-3 text-uppercase text-black">You're signed for the following</p>
-                <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or decline record.
-                    Thank you for choosing us!</p>
-                <table className="table-striped table-bordered records bg-light">
-                    <thead>
-                    <tr>
-                        <th className="text-center bg-light">Time</th>
-                        <th className="text-center bg-light">Place</th>
-                        <th className="text-center bg-light">Master</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.props.records.map((r) => {
-                        return (
-                            <tr key={r.id}>
-                                <td className="text-center info">{r.time}</td>
-                                <td className="text-center info">{r.place}</td>
-                                <td className="text-center info">{r.master}</td>
-                                <td>
-                                    <button className="btn-primary button"
-                                            onClick={this.decline.bind(this, r)}>
-                                        Decline
-                                    </button>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table>
+                            <p className="text-center mt-3 text-uppercase text-black">You're signed for the
+                                following</p>
+                            <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or
+                                decline record.
+                                Thank you for choosing us!</p>
+
+                            <table className="table-striped table-bordered records bg-light">
+                                <thead>
+                                <tr>
+                                    <th className="text-center bg-light">Time</th>
+                                    <th className="text-center bg-light">Place</th>
+                                    <th className="text-center bg-light">Master</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {this.props.records.map((r) => {
+                                    return (
+                                        <tr key={r.id}>
+                                            <td className="text-center info">{r.time}</td>
+                                            <td className="text-center info">{r.place}</td>
+                                            <td className="text-center info">{r.master}</td>
+                                            <td>
+                                                <button className="btn-primary button"
+                                                        onClick={this.decline.bind(this, r)}>
+                                                    Decline
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                                </tbody>
+                            </table>
+                        </div>
+                }
 
             </div>
         );
