@@ -1,16 +1,8 @@
 import React, {Component} from 'react';
 import Header from '../main/Header/Header';
-import './style.css'
-import {authenticate} from "../../actions/authenticate";
-import {connect} from "react-redux";
+import './style.css';
 
-const mapDispatchToProps = dispatch => {
-    return {
-        authenticate: () => dispatch(authenticate()),
-    };
-};
-
-class connectedAbout extends Component {
+class About extends Component {
 
     constructor(props) {
         super(props);
@@ -49,6 +41,5 @@ class connectedAbout extends Component {
     }
 }
 
-const About = connect(null, mapDispatchToProps)(connectedAbout);
 export default About;
 
