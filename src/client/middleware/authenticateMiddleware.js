@@ -35,7 +35,6 @@ export const authenticateMiddleware = ({dispatch}) => next => action => {
         fetch(`http://127.0.0.1:3000/records?username=${user}&id=${id}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
-            console.log("record applied");
             if (res.status.toString() === "ok") {
                 dispatch(applyRecord(id, time, place, master));
             }

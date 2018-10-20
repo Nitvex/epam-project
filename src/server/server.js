@@ -67,6 +67,24 @@ app.post('/authenticate', function (req, res) {
 });
 
 
+app.post('/getrecords', function (req, res) {
+    console.log("/getrecords requested");
+    let records = [];
+    userRecords.forEach((u) => {
+        if (u.username === req.query.username) {
+            records.push({
+                id: u.id,
+                time: u.time,
+                place: u.place,
+                master: u.master
+            });
+        }
+
+    });
+    res.send(records);
+});
+
+
 app.listen(3000, function () {
     console.log('App listening on port 3000!');
 });
