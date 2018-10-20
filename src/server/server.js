@@ -41,6 +41,7 @@ app.post('/authenticate', function (req, res) {
         if ((user.username === req.query.username) &&
             (user.password === req.query.password)) {
             found = true;
+            break;
         }
     }
     found ? res.end(JSON.stringify({status: "ok"})) : res.end(JSON.stringify({status: "not_found"}));
