@@ -34,7 +34,8 @@ class connectedHeader extends Component {
         this.props.logout();
         this.props.resetInput();
         localStorage.setItem('authenticated', 'no');
-        localStorage.setItem('user','');
+        localStorage.setItem('user', '');
+        this.forceUpdate();
     };
 
     render() {
@@ -45,7 +46,7 @@ class connectedHeader extends Component {
                     <Link to="/about" className="nav-item nav-link" href="#">About</Link>
                     <Link to="/account" className="nav-item nav-link" href="#">Account</Link>
                     {
-                        (localStorage.getItem('authenticated') === 'yes') ?
+                        ((localStorage.getItem('authenticated') === 'yes') || (this.props.isAuthenticated)) ?
                             <Link exact to="/" onClick={this.logout} href="#" className="nav-item nav-link">Log
                                 out</Link> :
                             <Link to="/login" className="nav-item nav-link" href="#">Login</Link>
