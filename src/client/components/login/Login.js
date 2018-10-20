@@ -78,13 +78,15 @@ class connectedLogin extends Component {
                         <input type="text"
                                className="form-control"
                                placeholder="Enter your username"
-                               ref={((username) => this.username = username)}/>
+                               ref={((username) => this.username = username)}
+                               onChange={this.props.resetInput}/>
                         <br/>
                         <label className="label">Password</label>
                         <input type="password"
                                className="form-control"
                                placeholder="Enter your password"
-                               ref={((password) => this.password = password)}/>
+                               ref={((password) => this.password = password)}
+                               onChange={this.props.resetInput}/>
                         <p className="password-security">For additional security, make sure it's more than 15
                             characters,
                             or at least 7 characters, including a number, and a
