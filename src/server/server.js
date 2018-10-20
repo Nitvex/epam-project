@@ -1,98 +1,17 @@
 let express = require("express");
-let path = require('path');
 let bodyParser = require("body-parser");
 let app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
 app.use(express.static(__dirname + "/public"));
 
-
-let users = [
-    {
-        username: 'user',
-        password: '12345'
-    },
-    {
-        username: 'admin',
-        password: '54321'
-    },
-    {
-        username: 'anotherOne',
-        password: '123321'
-    }
-
-];
-
-let masters = [
-    "John", "Jerry", "Larry", "Bill", "Shane", "Jenny", "Sally"
-];
-
-let times = [
-    "10:00", "10:30",
-    "11:00", "11:30",
-    "12:00", "12:30",
-    "13:00", "13:30",
-    "14:00", "14:30",
-    "15:00", "15:30",
-    "16:00", "16:30",
-    "17:00", "17:30",
-    "18:00", "18:30",
-    "19:00", "19:30",
-    "20:00", "20:30",
-    "21:00", "21:30",
-];
-
-let places = [
-    "Pushinskaya 12", "8th Krasnoarmeyskaya 4/5",
-    "Voskova 16", "Kirochnaya 9",
-    "M. Dudina, 32 K1", "Moskovkiy pr. 6",
-    "Prospekt Koroleva 2", "Pr. entuziastov, 33 K1"
-];
-
-let locations = [
-    {
-        location: "Pushkinskaya 12",
-        time: "Mon-San | 10:00 - 22:00",
-        subway: "Mayakovskaya"
-    },
-    {
-        location: "8th Krasnoarmeyskaya 4/5",
-        time: "Mon-San | 11:00 - 22:00",
-        subway: "Technologiskiy institut"
-    },
-    {
-        location: "Voskova 16",
-        time: "Mon-San | 10:00 - 22:00",
-        subway: "Gor'kovskaya"
-    },
-    {
-        location: "Kirochnaya 9",
-        time: "Mon-San | 10:00 - 21:00",
-        subway: "Chernyshevskaya"
-    },
-    {
-        location: "M. Dudina, 32 K1",
-        time: "Mon-San | 10:00 - 22:00",
-        subway: "Parnas"
-    },
-    {
-        location: "Moskovkiy pr. 6",
-        time: "Mon-San | 10:00 - 22:00",
-        subway: "Sadovaya"
-    },
-    {
-        location: "Prospekt Koroleva 2",
-        time: "Mon-San | 10:00 - 22:00",
-        subway: "Pionerskaya"
-    },
-    {
-        location: "Pr. entuziastov, 33 K1",
-        time: "Mon-San | 10:00 - 22:00",
-        subway: "Ladozhskaya"
-    },
-];
+/*Constants*/
+let masters = require("./constants/masters").masters;
+let users = require("./constants/users").users;
+let times = require("./constants/times").times;
+let places = require("./constants/places").places;
+let locations = require("./constants/locations").locations;
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
