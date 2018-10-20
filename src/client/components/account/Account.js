@@ -33,9 +33,6 @@ class connectedAccount extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            id: 1,
-        }
     }
 
     componentDidMount() {
@@ -49,8 +46,15 @@ class connectedAccount extends Component {
         let time = this.time.value;
         let place = this.place.value;
         let master = this.master.value;
-        this.props.applyRecord(this.state.id, time, place, master);
-        this.setState({id: this.state.id + 1});
+        let records = this.props.records;
+        if (records.length === 0) {
+            this.props.applyRecord(1, time, place, master);
+        } else {
+            records.sort((a, b) => {
+                return b.id - a.id;
+            });
+            this.props.applyRecord(records[0].id + 1, time, place, master);
+        }
     };
 
 
