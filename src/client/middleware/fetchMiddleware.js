@@ -2,6 +2,7 @@ import {FETCH_INFO, FETCH_LOCATIONS} from "../constants/action-types";
 import {addInfo} from "../actions/addInfo";
 import {addLocations} from "../actions/addLocations";
 
+
 export const fetchMiddleware = ({dispatch}) => next => action => {
     let requestOptions = {
         method: 'GET',

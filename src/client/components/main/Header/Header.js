@@ -34,6 +34,7 @@ class connectedHeader extends Component {
         this.props.logout();
         this.props.resetInput();
         localStorage.setItem('authenticated', 'no');
+        localStorage.setItem('user','');
     };
 
     render() {

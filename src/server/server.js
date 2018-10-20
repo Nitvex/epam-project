@@ -40,15 +40,20 @@ app.get('/locations', function (req, res) {
 
 
 app.post('/records', function (req, res) {
+    if ((!req.body) || (!req.query)) {
+        return res.sendStatus(400)
+    }
     console.log("/records requested");
-    let username = req.query.username;
-    let record = req.query.record;
-    userRecords.push({username, record});
+    let {username, id, time, place, master} = req.query;
+    userRecords.push({username, id, time, place, master});
     console.log(userRecords);
-    res.end();
+    res.send(JSON.stringify({status: "ok"}));
 });
 
 app.post('/authenticate', function (req, res) {
+    if ((!req.body) || (!req.query)) {
+        return res.sendStatus(400)
+    }
     console.log("/authenticate requested");
     let found = false;
     for (let user of users) {
@@ -58,7 +63,7 @@ app.post('/authenticate', function (req, res) {
             break;
         }
     }
-    found ? res.end(JSON.stringify({status: "ok"})) : res.end(JSON.stringify({status: "not_found"}));
+    found ? res.send(JSON.stringify({status: "ok"})) : res.send(JSON.stringify({status: "not_found"}));
 });
 
 

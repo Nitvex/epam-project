@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {applyRecord} from '../../actions/applyRecord';
+import {tryApplyRecord} from '../../actions/tryApplyRecord';
 import {declineRecord} from '../../actions/declineRecord';
 import {fetchInfo} from "../../actions/fetchInfo";
 import Header from '../main/Header/Header';
@@ -22,7 +22,7 @@ const mapStateToProps = ({informationReducer, recordsReducer}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        applyRecord: (id, time, place, master) => dispatch(applyRecord(id, time, place, master)),
+        tryApplyRecord: (id, time, place, master) => dispatch(tryApplyRecord(id, time, place, master)),
         declineRecord: (id, time, place, master) => dispatch(declineRecord(id, time, place, master)),
         fetchInfo: () => dispatch(fetchInfo()),
     };
@@ -48,12 +48,12 @@ class connectedAccount extends Component {
         let master = this.master.value;
         let records = this.props.records;
         if (records.length === 0) {
-            this.props.applyRecord(1, time, place, master);
+            this.props.tryApplyRecord(1, time, place, master);
         } else {
             records.sort((a, b) => {
                 return b.id - a.id;
             });
-            this.props.applyRecord(records[0].id + 1, time, place, master);
+            this.props.tryApplyRecord(records[0].id + 1, time, place, master);
         }
     };
 

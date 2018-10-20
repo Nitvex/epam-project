@@ -10,3 +10,4 @@ export const TRY_AUTHENTICATE = "TRY_AUTHENTICATE";
 export const WRONG_INPUT = "WRONG_INPUT";
 export const CORRECT_INPUT = "CORRECT_INPUT";
 export const RESET_INPUT = "RESET_INPUT";
+export const TRY_APPLY_RECORD = "TRY_APPLY_RECORD";
