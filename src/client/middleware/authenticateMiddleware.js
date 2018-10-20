@@ -40,7 +40,7 @@ export const authenticateMiddleware = ({dispatch}) => next => action => {
     if (action.type === TRY_MAKE_APPOINTMENT) {
         let user = localStorage.getItem('user');
         let {id, time, place, master} = action.payload;
-        fetch(`http://127.0.0.1:3000/appointments?username=${user}&id=${id}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
+        fetch(`http://127.0.0.1:3000/makeappointment?username=${user}&id=${id}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {

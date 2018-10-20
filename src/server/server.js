@@ -62,7 +62,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/account', function (req, res) {
-    console.log("/account requested");
+
     let infoForAppointment = {
         masters, times, places
     };
@@ -70,19 +70,19 @@ app.get('/account', function (req, res) {
 });
 
 app.get('/locations', function (req, res) {
-    console.log("/main_page requested");
+
     res.send(locations);
 });
 
 
-app.post('/appointments', function (req, res) {
+app.post('/makeappointment', function (req, res) {
     if ((!req.body) || (!req.query)) {
         return res.sendStatus(400)
     }
-    console.log("/appointments requested");
+
     let {username, id, time, place, master} = req.query;
     userAppointments.push({username, id, time, place, master});
-    console.log(userAppointments);
+
     res.send(JSON.stringify({status: "ok"}));
 });
 
@@ -90,7 +90,7 @@ app.post('/authenticate', function (req, res) {
     if ((!req.body) || (!req.query)) {
         return res.sendStatus(400)
     }
-    console.log("/authenticate requested");
+
     let found = false;
     for (let user of users) {
         if ((user.username === req.query.username) &&
@@ -104,7 +104,7 @@ app.post('/authenticate', function (req, res) {
 
 
 app.post('/getappointments', function (req, res) {
-    console.log("/getappointments requested");
+
     let appointments = [];
     userAppointments.forEach((u) => {
         if (u.username === req.query.username) {
@@ -121,7 +121,7 @@ app.post('/getappointments', function (req, res) {
 });
 
 app.post('/cancelappointment', function (req, res) {
-    console.log("/cancelappointment requested");
+
     let {username, id} = req.query;
     userAppointments.forEach((appointment, index) => {
         if ((appointment.username.toString() === username) && (appointment.id.toString() === id)) {
@@ -133,6 +133,6 @@ app.post('/cancelappointment', function (req, res) {
 
 
 app.listen(3000, function () {
-    console.log('App listening on port 3000!');
+    console.log("App is listening on 3000 port");
 });
 
