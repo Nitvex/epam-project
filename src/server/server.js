@@ -18,30 +18,35 @@ let locations = require("./constants/locations").locations;
 let userRecords = [
     {
         username: 'user',
+        id: 1,
         time: "11:00",
         place: "Hello 17",
         master: "Jeff"
     },
     {
         username: 'user',
+        id: 2,
         time: "12:00",
         place: "Hello 18",
         master: "Jeff"
     },
     {
         username: 'user',
+        id: 3,
         time: "13:00",
         place: "Hello 19",
         master: "Jeff"
     },
     {
         username: 'admin',
+        id: 1,
         time: "12:00",
         place: "Hello 18",
         master: "Larry"
     },
     {
         username: 'admin',
+        id: 2,
         time: "13:00",
         place: "Hello 19",
         master: "Larry"
