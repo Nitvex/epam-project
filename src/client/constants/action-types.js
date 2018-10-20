@@ -11,3 +11,6 @@ export const WRONG_INPUT = "WRONG_INPUT";
 export const CORRECT_INPUT = "CORRECT_INPUT";
 export const RESET_INPUT = "RESET_INPUT";
 export const TRY_APPLY_RECORD = "TRY_APPLY_RECORD";
+export const GET_RECORDS = "GET_RECORDS";
+export const ADD_RECORDS = "ADD_RECORDS";
+export const DELETE_RECORDS = "DELETE_RECORDS";

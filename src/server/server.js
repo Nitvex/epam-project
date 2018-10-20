@@ -15,7 +15,38 @@ let locations = require("./constants/locations").locations;
 
 
 /*Array to store records*/
-let userRecords = [];
+let userRecords = [
+    {
+        username: 'user',
+        time: "11:00",
+        place: "Hello 17",
+        master: "Jeff"
+    },
+    {
+        username: 'user',
+        time: "12:00",
+        place: "Hello 18",
+        master: "Jeff"
+    },
+    {
+        username: 'user',
+        time: "13:00",
+        place: "Hello 19",
+        master: "Jeff"
+    },
+    {
+        username: 'admin',
+        time: "12:00",
+        place: "Hello 18",
+        master: "Larry"
+    },
+    {
+        username: 'admin',
+        time: "13:00",
+        place: "Hello 19",
+        master: "Larry"
+    },
+];
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');

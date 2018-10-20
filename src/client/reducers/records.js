@@ -1,4 +1,4 @@
-import {APPLY_RECORD, DECLINE_RECORD} from "../constants/action-types";
+import {APPLY_RECORD, DECLINE_RECORD, ADD_RECORDS, DELETE_RECORDS} from "../constants/action-types";
 
 const initialState = {
     records: [],
@@ -13,6 +13,10 @@ export default function recordsReducer(state = initialState, action) {
                 return r.id !== action.payload.id
             });
             return {...state, records: [...records]};
+        case ADD_RECORDS:
+            return {...state, records: [...action.payload]};
+        case DELETE_RECORDS:
+            return {...state, records: []};
         default:
             return state;
     }

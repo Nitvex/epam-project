@@ -1,8 +1,10 @@
-import {TRY_AUTHENTICATE, TRY_APPLY_RECORD} from "../constants/action-types";
+import {TRY_AUTHENTICATE, TRY_APPLY_RECORD, GET_RECORDS} from "../constants/action-types";
 import {authenticate} from "../actions/authenticate";
 import {wrongInput} from "../actions/wrongInput";
 import {correctInput} from "../actions/correctInput";
 import {applyRecord} from "../actions/applyRecord";
+import {addRecords} from "../actions/addRecords";
+import {deleteRecords} from "../actions/deleteRecords";
 
 export const authenticateMiddleware = ({dispatch}) => next => action => {
 
@@ -38,6 +40,16 @@ export const authenticateMiddleware = ({dispatch}) => next => action => {
             if (res.status.toString() === "ok") {
                 dispatch(applyRecord(id, time, place, master));
             }
+        });
+    }
+
+    if (action.type === GET_RECORDS) {
+        let user = localStorage.getItem('user');
+        fetch(`http://127.0.0.1:3000/getrecords?username=${user}`, requestOptions).then((response) => {
+            return response.json();
+        }).then((records) => {
+            dispatch(deleteRecords());
+            dispatch(addRecords(records));
         });
     }
     next(action);

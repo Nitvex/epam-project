@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {tryApplyRecord} from '../../actions/tryApplyRecord';
 import {declineRecord} from '../../actions/declineRecord';
 import {fetchInfo} from "../../actions/fetchInfo";
+import {getRecords} from "../../actions/getRecords";
 import Header from '../main/Header/Header';
 import './style.css'
 
@@ -25,6 +26,7 @@ const mapDispatchToProps = dispatch => {
         tryApplyRecord: (id, time, place, master) => dispatch(tryApplyRecord(id, time, place, master)),
         declineRecord: (id, time, place, master) => dispatch(declineRecord(id, time, place, master)),
         fetchInfo: () => dispatch(fetchInfo()),
+        getRecords: () => dispatch(getRecords()),
     };
 };
 
@@ -39,6 +41,7 @@ class connectedAccount extends Component {
         if (this.props.masters.length === 0) {
             this.props.fetchInfo();
         }
+        this.props.getRecords();
     }
 
 
