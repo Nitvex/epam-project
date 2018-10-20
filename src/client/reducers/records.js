@@ -1,4 +1,4 @@
-import {APPLY_RECORD, DECLINE_RECORD, ADD_RECORDS, DELETE_RECORDS} from "../constants/action-types";
+import {APPLY_RECORD, CANCEL_RECORD, ADD_RECORDS, DELETE_RECORDS} from "../constants/action-types";
 
 const initialState = {
     records: [],
@@ -8,7 +8,7 @@ export default function recordsReducer(state = initialState, action) {
     switch (action.type) {
         case APPLY_RECORD:
             return {...state, records: [...state.records, action.payload]};
-        case DECLINE_RECORD:
+        case CANCEL_RECORD:
             let records = [...state.records].filter((r) => {
                 return r.id !== action.payload.id
             });

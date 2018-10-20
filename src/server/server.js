@@ -120,8 +120,8 @@ app.post('/getrecords', function (req, res) {
     res.send(records);
 });
 
-app.post('/declinerecord', function (req, res) {
-    console.log("/declinerecord requested");
+app.post('/cancelrecord', function (req, res) {
+    console.log("/cancelrecord requested");
     let {username, id} = req.query;
     userRecords.forEach((record, index) => {
         if ((record.username.toString() === username) && (record.id.toString() === id)) {

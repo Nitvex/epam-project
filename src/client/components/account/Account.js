@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {tryApplyRecord} from '../../actions/trying/tryApplyRecord';
-import {tryDeclineRecord} from '../../actions/trying/tryDeclineRecord';
+import {tryCancelRecord} from '../../actions/trying/tryCancelRecord';
 import {fetchInfo} from "../../actions/info/fetchInfo";
 import {getRecords} from "../../actions/records/getRecords";
 import Header from '../main/Header/Header';
@@ -24,7 +24,7 @@ const mapStateToProps = ({informationReducer, recordsReducer}) => {
 const mapDispatchToProps = dispatch => {
     return {
         tryApplyRecord: (id, time, place, master) => dispatch(tryApplyRecord(id, time, place, master)),
-        tryDeclineRecord: (id, time, place, master) => dispatch(tryDeclineRecord(id, time, place, master)),
+        tryCancelRecord: (id, time, place, master) => dispatch(tryCancelRecord(id, time, place, master)),
         fetchInfo: () => dispatch(fetchInfo()),
         getRecords: () => dispatch(getRecords()),
     };
@@ -61,9 +61,9 @@ class connectedAccount extends Component {
     };
 
 
-    decline = (record) => {
+    cancel = (record) => {
         let {id, time, place, master} = record;
-        this.props.tryDeclineRecord(id, time, place, master);
+        this.props.tryCancelRecord(id, time, place, master);
     };
 
     render() {
@@ -101,7 +101,8 @@ class connectedAccount extends Component {
                         })
                     }
 
-                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Make an appointment
+                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Make an
+                        appointment
                     </button>
                 </div>
                 {
@@ -133,7 +134,7 @@ class connectedAccount extends Component {
                                             <td className="text-center info">{r.master}</td>
                                             <td>
                                                 <button className="btn-primary button"
-                                                        onClick={this.decline.bind(this, r)}>
+                                                        onClick={this.cancel.bind(this, r)}>
                                                     Cancel
                                                 </button>
                                             </td>
