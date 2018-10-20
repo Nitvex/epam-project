@@ -13,6 +13,10 @@ let times = require("./constants/times").times;
 let places = require("./constants/places").places;
 let locations = require("./constants/locations").locations;
 
+
+/*Array to store records*/
+let userRecords = [];
+
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET');
@@ -32,6 +36,16 @@ app.get('/account', function (req, res) {
 app.get('/locations', function (req, res) {
     console.log("/main_page requested");
     res.send(locations);
+});
+
+
+app.post('/records', function (req, res) {
+    console.log("/records requested");
+    let username = req.query.username;
+    let record = req.query.record;
+    userRecords.push({username, record});
+    console.log(userRecords);
+    res.end();
 });
 
 app.post('/authenticate', function (req, res) {
