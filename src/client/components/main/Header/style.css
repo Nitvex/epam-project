@@ -1,10 +1,24 @@
 .header {
     background-color: #d5a353;
-    height:10vh;
+    height: 10vh;
     justify-content: center;
 }
-.nav-item.nav-link{
+
+.nav-item.nav-link {
     height: 5vh;
-    font-size: 32px;
-    color:black;
+    font-size: 2rem;
+    color: black;
+}
+
+.hey {
+    font-size: 1.5rem;
+}
+
+.username {
+    color: #cc9933;
+}
+
+.logout {
+    position: absolute;
+    right: 30px;
 }
