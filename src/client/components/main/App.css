@@ -3,6 +3,57 @@
     background-color: #f9eed1;
 }
 
+
 .our-locations {
-    font-size: 2rem;
+    background-color: #f9eed1;
+    padding: 50px 20px;
+    text-align: center;
+}
+.our-locations h1 {
+    font-weight: normal;
+    font-family: 'Merriweather', serif;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    line-height: 1;
+    color: #000;
+    font-size: 40px;
+    padding: .4em 1em .55em;
+}
+.our-locations h1:before,
+.our-locations h1:after {
+    content: "";
+    position: absolute;
+    width: 60%;
+    height: .1em;
+    background: #d5a353;
+}
+
+.our-locations h1:before {
+    left: 0;
+    top: 0;
+}
+.our-locations h1:after {
+    right: 0;
+    bottom: 0;
+}
+
+.our-locations h1 span:before,
+.our-locations h1 span:after {
+    content: "";
+    position: absolute;
+    width: .65em;
+    height: .65em;
+    border: .1em solid #d5a353;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.our-locations h1 span:before {
+    top: -.55em;
+    left: -.325em;
+}
+.our-locations h1 span:after {
+    bottom: -.55em;
+    right: -.325em;
 }
