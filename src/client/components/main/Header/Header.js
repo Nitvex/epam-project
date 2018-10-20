@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import './style.css';
 import {connect} from "react-redux";
-import {logout} from "../../../actions/logout";
-import {authenticate} from "../../../actions/authenticate";
-import {resetInput} from "../../../actions/resetInput";
+import {logout} from "../../../actions/authentication/logout";
+import {authenticate} from "../../../actions/authentication/authenticate";
+import {resetInput} from "../../../actions/input/resetInput";
 
 const mapStateToProps = (authenticationReducer) => {
     return {isAuthenticated: authenticationReducer.isAuthenticated};

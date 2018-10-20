@@ -3,8 +3,8 @@ import './App.css';
 import Header from './Header/Header';
 import Slider from './Slider/Slider';
 import Location from './Location/Location';
-import {authenticate} from "../../actions/authenticate";
-import {fetchLocations} from "../../actions/fetchLocations";
+import {authenticate} from "../../actions/authentication/authenticate";
+import {fetchLocations} from "../../actions/locations/fetchLocations";
 import {connect} from "react-redux";
 
 

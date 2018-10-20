@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {tryApplyRecord} from '../../actions/tryApplyRecord';
-import {declineRecord} from '../../actions/declineRecord';
-import {fetchInfo} from "../../actions/fetchInfo";
-import {getRecords} from "../../actions/getRecords";
+import {tryApplyRecord} from '../../actions/trying/tryApplyRecord';
+import {declineRecord} from '../../actions/records/declineRecord';
+import {fetchInfo} from "../../actions/info/fetchInfo";
+import {getRecords} from "../../actions/records/getRecords";
 import Header from '../main/Header/Header';
 import './style.css'
 

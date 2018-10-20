@@ -1,10 +1,10 @@
 import {TRY_AUTHENTICATE, TRY_APPLY_RECORD, GET_RECORDS} from "../constants/action-types";
-import {authenticate} from "../actions/authenticate";
-import {wrongInput} from "../actions/wrongInput";
-import {correctInput} from "../actions/correctInput";
-import {applyRecord} from "../actions/applyRecord";
-import {addRecords} from "../actions/addRecords";
-import {deleteRecords} from "../actions/deleteRecords";
+import {authenticate} from "../actions/authentication/authenticate";
+import {wrongInput} from "../actions/input/wrongInput";
+import {correctInput} from "../actions/input/correctInput";
+import {applyRecord} from "../actions/records/applyRecord";
+import {addRecords} from "../actions/records/addRecords";
+import {deleteRecords} from "../actions/records/deleteRecords";
 
 export const authenticateMiddleware = ({dispatch}) => next => action => {
 

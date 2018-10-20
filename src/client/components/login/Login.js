@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {tryAuthenticate} from "../../actions/tryAuthenticate";
-import {logout} from "../../actions/logout";
+import {tryAuthenticate} from "../../actions/trying/tryAuthenticate";
+import {logout} from "../../actions/authentication/logout";
 import {connect} from 'react-redux';
 import Header from '../main/Header/Header';
 import {Redirect} from "react-router-dom";
 import './style.css';
-import {resetInput} from "../../actions/resetInput";
+import {resetInput} from "../../actions/input/resetInput";
 
 const mapStateToProps = ({authenticationReducer, correctInputReducer}) => {
     return {
