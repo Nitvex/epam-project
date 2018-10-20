@@ -72,7 +72,7 @@ class connectedLogin extends Component {
                             means for individual use in everyday hair and beard care. Barber Wild in its products uses
                             only natural ingredients, plant essential oils and vitamin supplements, which make Barber
                             Wild cosmetics not only high-quality, but also truly useful.
-                            Want to try? Login and sign up faster!
+                            Want to try? Login and make an appointment faster!
                         </p>
                         <label className="label">Username</label>
                         <input type="text"

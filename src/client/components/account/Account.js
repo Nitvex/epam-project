@@ -101,7 +101,7 @@ class connectedAccount extends Component {
                         })
                     }
 
-                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Apply
+                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.apply}>Make an appointment
                     </button>
                 </div>
                 {
@@ -110,10 +110,10 @@ class connectedAccount extends Component {
                         :
                         <div>
 
-                            <p className="text-center mt-3 text-uppercase text-black">You're signed for the
+                            <p className="text-center mt-3 text-uppercase text-black">You've made appointments for the
                                 following</p>
                             <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or
-                                decline record.
+                                cancel record.
                                 Thank you for choosing us!</p>
 
                             <table className="table-striped table-bordered records bg-light">
@@ -134,7 +134,7 @@ class connectedAccount extends Component {
                                             <td>
                                                 <button className="btn-primary button"
                                                         onClick={this.decline.bind(this, r)}>
-                                                    Decline
+                                                    Cancel
                                                 </button>
                                             </td>
                                         </tr>

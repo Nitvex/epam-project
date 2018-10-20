@@ -9,7 +9,7 @@ module.exports = {
         path: path.resolve(__dirname, 'public')
     },
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-source-map',
     module: {
         rules: [
             {
@@ -48,9 +48,9 @@ module.exports = {
     plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Hot Module Replacement'
+            title: 'Hot Module Replacement',
+            template: './public/index.html',
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({template: './public/index.html'})
     ],
 };
