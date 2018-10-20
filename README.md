@@ -38,3 +38,14 @@ Built using Node.js+Express
 - **npm install** to install dependencies
 - **node src/server/server.js** to start Node.js server
 - **npm run webpack** to start dev-server or **npm run wpb** to build project and then open index.html in public folder
+
+Note: default users have following logins and passwords:
+
+  -----------------------
+ |   login    | password |
+ |:----------:|:--------:|
+ | user       | 12345    |
+ | admin      | 54321    |
+ | anotherOne | 123321   | 
+
+  
