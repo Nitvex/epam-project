@@ -33,10 +33,11 @@ class connectedLogin extends Component {
         this.props.resetInput();
     }
 
-    formSubmit = () => {
+    formSubmit = (event) => {
         let username = this.username.value;
         let password = this.password.value;
         this.props.tryAuthenticate(username, password);
+        event.preventDefault();
     };
 
     render() {
@@ -64,7 +65,7 @@ class connectedLogin extends Component {
                 <Header/>
                 <div className="login">
                     <img className="w-50" src={require('../../assets/images/login.jpg')} alt="login_picture"/>
-                    <form className="form w-50" onSubmit={this.formSubmit}>
+                    <form className="form w-50" onSubmit={(event) => this.formSubmit(event)}>
                         <p className="advertisement">
                             In the assortment of the brand there are both goods necessary for the work of a professional
                             barber, and
