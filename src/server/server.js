@@ -120,6 +120,17 @@ app.post('/getrecords', function (req, res) {
     res.send(records);
 });
 
+app.post('/deleterecord', function (req, res) {
+    console.log("/deleterecords requested");
+    let {username, id} = req.query;
+    userRecords.forEach((record, index) => {
+        if ((record.username.toString() === username) && (record.id.toString() === id)) {
+            userRecords.splice(index, 1);
+        }
+    });
+    res.send(JSON.stringify({status: "ok"}));
+});
+
 
 app.listen(3000, function () {
     console.log('App listening on port 3000!');
