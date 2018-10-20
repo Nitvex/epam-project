@@ -12,9 +12,9 @@ let users = require("./constants/users").users;
 let times = require("./constants/times").times;
 let places = require("./constants/places").places;
 let locations = require("./constants/locations").locations;
+let userAppointments = require("./constants/userAppointments").userAppointments;
 
-
-/*Array to store appointments*/
+/*Array to store appointments
 let userAppointments = [
     {
         username: 'user',
@@ -52,7 +52,7 @@ let userAppointments = [
         master: "Larry"
     },
 ];
-
+*/
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET');
@@ -82,7 +82,7 @@ app.post('/makeappointment', function (req, res) {
 
     let {username, id, time, place, master} = req.query;
     userAppointments.push({username, id, time, place, master});
-
+    console.log(userAppointments);
     res.send(JSON.stringify({status: "ok"}));
 });
 

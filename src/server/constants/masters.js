@@ -1,3 +1,3 @@
 module.exports.masters = [
-    "John", "Jerry", "Larry", "Bill", "Shane", "Jenny", "Sally"
+    "John", "Jerry", "Larry", "Bill", "Shane", "Jenny", "Sally", "Jeff"
 ];
