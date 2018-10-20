@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {tryApplyRecord} from '../../actions/trying/tryApplyRecord';
-import {declineRecord} from '../../actions/records/declineRecord';
+import {tryDeclineRecord} from '../../actions/trying/tryDeclineRecord';
 import {fetchInfo} from "../../actions/info/fetchInfo";
 import {getRecords} from "../../actions/records/getRecords";
 import Header from '../main/Header/Header';
@@ -24,7 +24,7 @@ const mapStateToProps = ({informationReducer, recordsReducer}) => {
 const mapDispatchToProps = dispatch => {
     return {
         tryApplyRecord: (id, time, place, master) => dispatch(tryApplyRecord(id, time, place, master)),
-        declineRecord: (id, time, place, master) => dispatch(declineRecord(id, time, place, master)),
+        tryDeclineRecord: (id, time, place, master) => dispatch(tryDeclineRecord(id, time, place, master)),
         fetchInfo: () => dispatch(fetchInfo()),
         getRecords: () => dispatch(getRecords()),
     };
@@ -56,14 +56,14 @@ class connectedAccount extends Component {
             records.sort((a, b) => {
                 return b.id - a.id;
             });
-            this.props.tryApplyRecord(records[0].id + 1, time, place, master);
+            this.props.tryApplyRecord(Number(records[0].id) + 1, time, place, master);
         }
     };
 
 
     decline = (record) => {
         let {id, time, place, master} = record;
-        this.props.declineRecord(id, time, place, master);
+        this.props.tryDeclineRecord(id, time, place, master);
     };
 
     render() {
