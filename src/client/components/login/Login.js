@@ -7,10 +7,10 @@ import {Redirect} from "react-router-dom";
 import './style.css';
 import {resetInput} from "../../actions/resetInput";
 
-const mapStateToProps = state => {
+const mapStateToProps = ({authenticationReducer, correctInputReducer}) => {
     return {
-        isAuthenticated: state.isAuthenticated,
-        correctInput: state.correctInput,
+        isAuthenticated: authenticationReducer.isAuthenticated,
+        correctInput: correctInputReducer.correctInput,
     };
 };
 const mapDispatchToProps = dispatch => {

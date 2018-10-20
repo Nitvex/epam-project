@@ -6,8 +6,8 @@ import {logout} from "../../../actions/logout";
 import {authenticate} from "../../../actions/authenticate";
 import {resetInput} from "../../../actions/resetInput";
 
-const mapStateToProps = state => {
-    return {isAuthenticated: state.isAuthenticated};
+const mapStateToProps = (authenticationReducer) => {
+    return {isAuthenticated: authenticationReducer.isAuthenticated};
 };
 
 const mapDispatchToProps = dispatch => {

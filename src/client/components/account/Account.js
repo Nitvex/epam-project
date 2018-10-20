@@ -6,16 +6,16 @@ import {fetchInfo} from "../../actions/fetchInfo";
 import Header from '../main/Header/Header';
 import './style.css'
 
-const mapStateToProps = state => {
+const mapStateToProps = ({informationReducer, recordsReducer}) => {
     return {
-        records: state.records,
-        masters: state.masters,
-        times: state.times,
-        places: state.places,
+        records: recordsReducer.records,
+        masters: informationReducer.masters,
+        times: informationReducer.times,
+        places: informationReducer.places,
         infoForRecord: [
-            state.times,
-            state.places,
-            state.masters,
+            informationReducer.times,
+            informationReducer.places,
+            informationReducer.masters,
         ]
     };
 };

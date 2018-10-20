@@ -8,10 +8,10 @@ import {fetchLocations} from "../../actions/fetchLocations";
 import {connect} from "react-redux";
 
 
-const mapStateToProps = state => {
+const mapStateToProps = ({authenticationReducer, locationsReducer}) => {
     return {
-        isAuthenticated: state.isAuthenticated,
-        locations: state.locations,
+        isAuthenticated: authenticationReducer.isAuthenticated,
+        locations: locationsReducer.locations,
     };
 };
 const mapDispatchToProps = dispatch => {
