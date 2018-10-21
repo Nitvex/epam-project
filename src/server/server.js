@@ -14,45 +14,7 @@ let places = require("./constants/places").places;
 let locations = require("./constants/locations").locations;
 let userAppointments = require("./constants/userAppointments").userAppointments;
 
-/*Array to store appointments
-let userAppointments = [
-    {
-        username: 'user',
-        id: 1,
-        time: "11:00",
-        place: "Hello 17",
-        master: "Jeff"
-    },
-    {
-        username: 'user',
-        id: 2,
-        time: "12:00",
-        place: "Hello 18",
-        master: "Jeff"
-    },
-    {
-        username: 'user',
-        id: 3,
-        time: "13:00",
-        place: "Hello 19",
-        master: "Jeff"
-    },
-    {
-        username: 'admin',
-        id: 1,
-        time: "12:00",
-        place: "Hello 18",
-        master: "Larry"
-    },
-    {
-        username: 'admin',
-        id: 2,
-        time: "13:00",
-        place: "Hello 19",
-        master: "Larry"
-    },
-];
-*/
+
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST,GET');
