@@ -5,7 +5,7 @@ import {tryCancelAppointment} from '../../actions/trying/tryCancelAppointment';
 import {fetchInfo} from "../../actions/info/fetchInfo";
 import {getAppointments} from "../../actions/appointments/getAppointments";
 import Header from '../main/Header/Header';
-import './style.css'
+import './style.css';
 
 const mapStateToProps = ({informationReducer, appointmentsReducer}) => {
     return {
@@ -35,6 +35,9 @@ class connectedAccount extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            isShown: false,
+        }
     }
 
     componentDidMount() {
@@ -50,9 +53,21 @@ class connectedAccount extends Component {
         let place = this.place.value;
         let master = this.master.value;
         let appointments = this.props.appointments;
+        let found = false;
+        this.props.appointments.forEach((appointment) => {
+            if ((appointment.time === time) &&
+                (appointment.place === place) &&
+                (appointment.master === master)) {
+                found = true;
+                this.setState({isShown: true});
+                setTimeout(() => {
+                    this.setState({isShown: false})
+                }, 6000)
+            }
+        });
         if (appointments.length === 0) {
             this.props.tryMakeAppointment(1, time, place, master);
-        } else {
+        } else if (!found) {
             appointments.sort((a, b) => {
                 return b.id - a.id;
             });
@@ -71,7 +86,9 @@ class connectedAccount extends Component {
             <div className="account">
                 <Header/>
 
-                <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>! You can make an appointment below</div>
+                <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>!
+                    You can make an appointment below
+                </div>
                 <div className="w-100 mt-3 px-5">
                     <label className="w-25 label">Choose time</label>
                     <label className="w-25 label">Choose place</label>
@@ -106,6 +123,18 @@ class connectedAccount extends Component {
                     <button className="input-group-append btn w-25 justify-content-center" onClick={this.make}>Make an
                         appointment
                     </button>
+                    {
+                        (this.state.isShown) ?
+                            <div className="alert w-100" role="alert">
+                                <h4 className="alert-heading">Same place, same time!</h4>
+                                <p>It seems you've tried to make an appointment at the same time, same place and same
+                                    master!
+                                </p>
+                                <hr/>
+                                <p className="mb-0">Please change time, place or master
+                                </p>
+                            </div> : ''
+                    }
                 </div>
                 {
                     this.props.appointments.length === 0 ?
