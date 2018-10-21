@@ -54,7 +54,7 @@ class connectedAccount extends Component {
         let master = this.master.value;
         let appointments = this.props.appointments;
         let found = false;
-        this.props.appointments.forEach((appointment) => {
+        for (let appointment of this.props.appointments) {
             if ((appointment.time === time) &&
                 (appointment.place === place) &&
                 (appointment.master === master)) {
@@ -62,9 +62,10 @@ class connectedAccount extends Component {
                 this.setState({isShown: true});
                 setTimeout(() => {
                     this.setState({isShown: false})
-                }, 6000)
+                }, 6000);
+                break;
             }
-        });
+        }
         if (appointments.length === 0) {
             this.props.tryMakeAppointment(1, time, place, master);
         } else if (!found) {
