@@ -40,11 +40,10 @@ class connectedHeader extends Component {
 
     render() {
         return (
-            <header className="header">
-                <nav className="nav nav-pills justify-content-center">
-                    <Link to="/" className="nav-item nav-link" href="#">
-                        <img className="mustache"
-                             src="https://png.icons8.com/metro/100/000000/english-mustache.png"
+            <header className="header sticky-top">
+                <nav className="nav nav-pills justify-content-around flex ">
+                    <Link to="/" className="nav-item nav-link mustache" href="#">
+                        <img src="https://png.icons8.com/metro/100/000000/english-mustache.png"
                              alt="mustache"/>
                     </Link>
                     <Link to="/" className="nav-item nav-link" href="#">Main page</Link>

@@ -5,13 +5,13 @@
 }
 
 .nav-item.nav-link {
-    height: 5vh;
     font-size: 1.8rem;
     color: black;
     display: flex;
-    vertical-align: top;
     border: none;
     outline: none;
+    position: relative;
+    top: 0.2em;
 }
 
 .hey {
@@ -23,12 +23,11 @@
 }
 
 .logout {
-    position: absolute;
-    right: 30px;
+    float: right;
 }
 
 .mustache {
-    position: absolute;
-    left: 30px;
-    top: -15px;
+   float:left;
+   padding: 0 !important;
+   margin: -15px 5px;
 }
