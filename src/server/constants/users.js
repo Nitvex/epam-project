@@ -1,4 +1,4 @@
-module.exports.users = [
+module.exports = [
     {
         username: 'user',
         password: '12345'

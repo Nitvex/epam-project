@@ -1,4 +1,4 @@
-module.exports.times = [
+module.exports = [
     "10:00", "10:30",
     "11:00", "11:30",
     "12:00", "12:30",

@@ -1,4 +1,4 @@
-module.exports.locations = [
+module.exports = [
     {
         location: "Pushkinskaya 12",
         time: "Mon-San | 10:00 - 22:00",

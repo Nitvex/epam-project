@@ -7,12 +7,12 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 
 /*Constants*/
-let masters = require("./constants/masters").masters;
-let users = require("./constants/users").users;
-let times = require("./constants/times").times;
-let places = require("./constants/places").places;
-let locations = require("./constants/locations").locations;
-let userAppointments = require("./constants/userAppointments").userAppointments;
+let masters = require("./constants/masters");
+let users = require("./constants/users");
+let times = require("./constants/times");
+let places = require("./constants/places");
+let locations = require("./constants/locations");
+let userAppointments = require("./constants/userAppointments");
 
 
 app.use(function (req, res, next) {
@@ -24,7 +24,6 @@ app.use(function (req, res, next) {
 });
 
 app.get('/account', function (req, res) {
-
     let infoForAppointment = {
         masters, times, places
     };
@@ -32,27 +31,23 @@ app.get('/account', function (req, res) {
 });
 
 app.get('/locations', function (req, res) {
-
     res.send(locations);
 });
 
 
 app.post('/makeappointment', function (req, res) {
-    if ((!req.body) || (!req.query)) {
+    if (!req.query) {
         return res.sendStatus(400)
     }
-
     let {username, id, time, place, master} = req.query;
     userAppointments.push({username, id, time, place, master});
-    console.log(userAppointments);
     res.send(JSON.stringify({status: "ok"}));
 });
 
 app.post('/authenticate', function (req, res) {
-    if ((!req.body) || (!req.query)) {
+    if (!req.query) {
         return res.sendStatus(400)
     }
-
     let found = false;
     for (let user of users) {
         if ((user.username === req.query.username) &&
@@ -66,7 +61,9 @@ app.post('/authenticate', function (req, res) {
 
 
 app.post('/getappointments', function (req, res) {
-
+    if (!req.query) {
+        return res.sendStatus(400)
+    }
     let appointments = [];
     userAppointments.forEach((u) => {
         if (u.username === req.query.username) {
@@ -83,7 +80,9 @@ app.post('/getappointments', function (req, res) {
 });
 
 app.post('/cancelappointment', function (req, res) {
-
+    if (!req.query) {
+        return res.sendStatus(400)
+    }
     let {username, id} = req.query;
     userAppointments.forEach((appointment, index) => {
         if ((appointment.username.toString() === username) && (appointment.id.toString() === id)) {

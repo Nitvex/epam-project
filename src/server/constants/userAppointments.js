@@ -1,4 +1,4 @@
-module.exports.userAppointments = [
+module.exports = [
     {
         username: 'user',
         id: 1,
