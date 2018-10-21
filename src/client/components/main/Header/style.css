@@ -10,6 +10,8 @@
     color: black;
     display: flex;
     vertical-align: top;
+    border: none;
+    outline: none;
 }
 
 .hey {
@@ -28,5 +30,5 @@
 .mustache {
     position: absolute;
     left: 30px;
-    top:-15px;
+    top: -15px;
 }
