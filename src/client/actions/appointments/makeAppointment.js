@@ -1,3 +1,3 @@
-import {APPLY_APPOINTMENT} from "../../constants/action-types";
+import {MAKE_APPOINTMENT} from "../../constants/action-types";
 
-export const makeAppointment = (id, time, place, master) => ({type: APPLY_APPOINTMENT, payload: {id, time, place, master}});
+export const makeAppointment = (id, time, place, master) => ({type: MAKE_APPOINTMENT, payload: {id, time, place, master}});

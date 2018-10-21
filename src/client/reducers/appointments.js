@@ -1,4 +1,4 @@
-import {APPLY_APPOINTMENT, CANCEL_APPOINTMENT, ADD_APPOINTMENTS, DELETE_APPOINTMENTS} from "../constants/action-types";
+import {MAKE_APPOINTMENT, CANCEL_APPOINTMENT, ADD_APPOINTMENTS, DELETE_APPOINTMENTS} from "../constants/action-types";
 
 const initialState = {
     appointments: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function appointmentsReducer(state = initialState, action) {
     switch (action.type) {
-        case APPLY_APPOINTMENT:
+        case MAKE_APPOINTMENT:
             return {...state, appointments: [...state.appointments, action.payload]};
         case CANCEL_APPOINTMENT:
             let appointments = [...state.appointments].filter((r) => {
