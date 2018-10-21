@@ -6,8 +6,10 @@
 
 .nav-item.nav-link {
     height: 5vh;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: black;
+    display: flex;
+    vertical-align: top;
 }
 
 .hey {
@@ -21,4 +23,10 @@
 .logout {
     position: absolute;
     right: 30px;
+}
+
+.mustache {
+    position: absolute;
+    left: 30px;
+    top:-15px;
 }

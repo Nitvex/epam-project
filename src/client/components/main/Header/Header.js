@@ -42,6 +42,11 @@ class connectedHeader extends Component {
         return (
             <header className="header">
                 <nav className="nav nav-pills justify-content-center">
+                    <Link to="/" className="nav-item nav-link" href="#">
+                        <img className="mustache"
+                             src="https://png.icons8.com/metro/100/000000/english-mustache.png"
+                             alt="mustache"/>
+                    </Link>
                     <Link to="/" className="nav-item nav-link" href="#">Main page</Link>
                     <Link to="/about" className="nav-item nav-link" href="#">About</Link>
                     <Link to="/account" className="nav-item nav-link" href="#">Account</Link>
