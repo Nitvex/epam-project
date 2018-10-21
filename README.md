@@ -18,15 +18,16 @@ Built using React+Redux+Bootstrap. Bundled by webpack
 
  - Requires authorization
  - If requested without authorization then redirects to login page
- - Here user can enroll in master
+ - Here user can make an appointment with master
  - User can cancel appointment
- - Enrollment and cancellation make requests to server, which stores data about different users. So, different users see different data.
+ - Appointment making and cancellation make requests to server, which stores data about different users. So, different users see different data.
  - Time, places, names of masters are requested from server
+ - User can't make appointments at the same time, place and master. If he does, warning is shown (disappears in 6 seconds)
 
 ### Login page 
 
- - Lets user to get authotorized
- - If user inputs incorrect data, error message is shown
+ - Lets user to get authorized
+ - If user enters incorrect data, error message is shown
 
 ## Backend 
 
