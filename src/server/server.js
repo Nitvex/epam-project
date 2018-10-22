@@ -39,7 +39,6 @@ app.post('/makeappointment', function (req, res) {
         return res.sendStatus(400)
     }
     let {username, id, date, time, place, master} = req.query;
-    console.log(req.query);
     userAppointments.push({username, id, date, time, place, master});
     res.send(JSON.stringify({status: "ok"}));
 });

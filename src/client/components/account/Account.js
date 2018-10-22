@@ -97,6 +97,11 @@ class connectedAccount extends Component {
         this.props.tryCancelAppointment(id, date, time, place, master);
     };
 
+    splitDate = (date) => {
+        let splittedDate = date.split("-");
+        return new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
+    };
+
     render() {
         return (
             <div className="account">
@@ -156,9 +161,9 @@ class connectedAccount extends Component {
                     {
                         (this.state.isPastDate) ?
                             <div className="alert w-100" role="alert">
-                                <h4 className="alert-heading">Past date!</h4>
-                                <p>It seems you've tried to make an appointment at the past date! You can make an
-                                    appointment only in future days
+                                <h4 className="alert-heading">Incorrect date!</h4>
+                                <p>It seems you've tried to make an appointment at the past date or haven't entered
+                                    date! You can make an appointment only at future days
                                 </p>
                                 <hr/>
                                 <p className="mb-0">Please change date, time, place or master.
@@ -196,10 +201,16 @@ class connectedAccount extends Component {
                                             <td className="text-center info">{r.place}</td>
                                             <td className="text-center info">{r.master}</td>
                                             <td>
-                                                <button className="btn-primary button"
-                                                        onClick={this.cancel.bind(this, r)}>
-                                                    Cancel
-                                                </button>
+                                                {new Date(this.splitDate(r.date)) > new Date() ?
+                                                    <button className="btn-primary button"
+                                                            onClick={this.cancel.bind(this, r)}>
+                                                        Cancel
+                                                    </button> :
+                                                    <button className="btn-secondary button">
+                                                        Cancel
+                                                    </button>
+                                                }
+
                                             </td>
                                         </tr>
                                     )
