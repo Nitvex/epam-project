@@ -23,8 +23,8 @@ const mapStateToProps = ({informationReducer, appointmentsReducer}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        tryMakeAppointment: (id, time, place, master) => dispatch(tryMakeAppointment(id, time, place, master)),
-        tryCancelAppointment: (id, time, place, master) => dispatch(tryCancelAppointment(id, time, place, master)),
+        tryMakeAppointment: (id, date, time, place, master) => dispatch(tryMakeAppointment(id, date, time, place, master)),
+        tryCancelAppointment: (id, date, time, place, master) => dispatch(tryCancelAppointment(id, date, time, place, master)),
         fetchInfo: () => dispatch(fetchInfo()),
         getAppointments: () => dispatch(getAppointments()),
     };
@@ -36,7 +36,8 @@ class connectedAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShown: false,
+            isSamePlace: false,
+            isPastDate: false,
         }
     }
 
@@ -49,44 +50,57 @@ class connectedAccount extends Component {
 
 
     make = () => {
+        let date = this.date.value.split("-").reverse().join("-");
         let time = this.time.value;
         let place = this.place.value;
         let master = this.master.value;
-        let appointments = this.props.appointments;
-        let found = false;
-        for (let appointment of this.props.appointments) {
-            if ((appointment.time === time) &&
-                (appointment.place === place) &&
-                (appointment.master === master)) {
-                found = true;
-                this.setState({isShown: true});
-                setTimeout(() => {
-                    this.setState({isShown: false})
-                }, 6000);
-                break;
+        let splittedDate = date.split("-");
+        let appointmentDate = new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
+        let currentDate = new Date();
+        if (appointmentDate > currentDate) {
+            let appointments = this.props.appointments;
+            let found = false;
+            for (let appointment of this.props.appointments) {
+                if ((appointment.date === date) &&
+                    (appointment.time === time) &&
+                    (appointment.place === place) &&
+                    (appointment.master === master)) {
+                    found = true;
+                    this.setState({isSamePlace: true});
+                    this.setState({isPastDate: false});
+                    setTimeout(() => {
+                        this.setState({isSamePlace: false})
+                    }, 6000);
+                    break;
+                }
             }
-        }
-        if (appointments.length === 0) {
-            this.props.tryMakeAppointment(1, time, place, master);
-        } else if (!found) {
-            appointments.sort((a, b) => {
-                return b.id - a.id;
-            });
-            this.props.tryMakeAppointment(Number(appointments[0].id) + 1, time, place, master);
+            if (appointments.length === 0) {
+                this.props.tryMakeAppointment(1, date, time, place, master);
+            } else if (!found) {
+                appointments.sort((a, b) => {
+                    return b.id - a.id;
+                });
+                this.props.tryMakeAppointment(Number(appointments[0].id) + 1, date, time, place, master);
+            }
+        } else {
+            this.setState({isPastDate: true});
+            this.setState({isSamePlace: false});
+            setTimeout(() => {
+                this.setState({isPastDate: false})
+            }, 6000);
         }
     };
 
 
     cancel = (appointment) => {
-        let {id, time, place, master} = appointment;
-        this.props.tryCancelAppointment(id, time, place, master);
+        let {id, date, time, place, master} = appointment;
+        this.props.tryCancelAppointment(id, date, time, place, master);
     };
 
     render() {
         return (
             <div className="account">
                 <Header/>
-
                 <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>!
                     You can make an appointment below
                 </div>
@@ -96,6 +110,8 @@ class connectedAccount extends Component {
                     <label className="w-25 label">Choose master</label>
                 </div>
                 <div className="input-group mt-0 px-5">
+                    <input type="date" name="bday" max="3000-12-31"
+                           min="2018-01-01" className="form-control" ref={(date) => this.date = date}/>
                     {
                         this.props.infoForAppointment.map((infoItem, index) => {
                             return (
@@ -125,14 +141,27 @@ class connectedAccount extends Component {
                         appointment
                     </button>
                     {
-                        (this.state.isShown) ?
+                        (this.state.isSamePlace) ?
                             <div className="alert w-100" role="alert">
                                 <h4 className="alert-heading">Same place, same time!</h4>
-                                <p>It seems you've tried to make an appointment at the same time, same place and same
+                                <p>It seems you've tried to make an appointment at the same date, same time, same place
+                                    and same
                                     master!
                                 </p>
                                 <hr/>
-                                <p className="mb-0">Please change time, place or master
+                                <p className="mb-0">Please change date, time, place or master
+                                </p>
+                            </div> : ''
+                    }
+                    {
+                        (this.state.isPastDate) ?
+                            <div className="alert w-100" role="alert">
+                                <h4 className="alert-heading">Past date!</h4>
+                                <p>It seems you've tried to make an appointment at the past date! You can make an
+                                    appointment only in future days
+                                </p>
+                                <hr/>
+                                <p className="mb-0">Please change date, time, place or master.
                                 </p>
                             </div> : ''
                     }
@@ -152,6 +181,7 @@ class connectedAccount extends Component {
                             <table className="table-striped table-bordered appointments bg-light">
                                 <thead>
                                 <tr>
+                                    <th className="text-center bg-light">Date</th>
                                     <th className="text-center bg-light">Time</th>
                                     <th className="text-center bg-light">Place</th>
                                     <th className="text-center bg-light">Master</th>
@@ -161,6 +191,7 @@ class connectedAccount extends Component {
                                 {this.props.appointments.map((r) => {
                                     return (
                                         <tr key={r.id}>
+                                            <td className="text-center info">{r.date}</td>
                                             <td className="text-center info">{r.time}</td>
                                             <td className="text-center info">{r.place}</td>
                                             <td className="text-center info">{r.master}</td>

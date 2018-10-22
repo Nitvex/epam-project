@@ -39,12 +39,12 @@ export const authenticateMiddleware = ({dispatch}) => next => action => {
 
     if (action.type === TRY_MAKE_APPOINTMENT) {
         let user = localStorage.getItem('user');
-        let {id, time, place, master} = action.payload;
-        fetch(`http://127.0.0.1:3000/makeappointment?username=${user}&id=${id}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
+        let {id, date, time, place, master} = action.payload;
+        fetch(`http://127.0.0.1:3000/makeappointment?username=${user}&id=${id}&date=${date}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {
-                dispatch(makeAppointment(id, time, place, master));
+                dispatch(makeAppointment(id, date, time, place, master));
             }
         });
     }
@@ -62,12 +62,12 @@ export const authenticateMiddleware = ({dispatch}) => next => action => {
 
     if (action.type === TRY_CANCEL_APPOINTMENT) {
         let user = localStorage.getItem('user');
-        let {id, time, place, master} = action.payload;
+        let {id, date, time, place, master} = action.payload;
         fetch(`http://127.0.0.1:3000/cancelappointment?username=${user}&id=${id}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {
-                dispatch(cancelAppointment(id, time, place, master));
+                dispatch(cancelAppointment(id, date, time, place, master));
             }
         });
     }

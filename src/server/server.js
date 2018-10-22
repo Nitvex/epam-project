@@ -38,8 +38,9 @@ app.post('/makeappointment', function (req, res) {
     if (!req.query) {
         return res.sendStatus(400)
     }
-    let {username, id, time, place, master} = req.query;
-    userAppointments.push({username, id, time, place, master});
+    let {username, id, date, time, place, master} = req.query;
+    console.log(req.query);
+    userAppointments.push({username, id, date, time, place, master});
     res.send(JSON.stringify({status: "ok"}));
 });
 
@@ -68,6 +69,7 @@ app.post('/getappointments', function (req, res) {
         if (u.username === req.query.username) {
             appointments.push({
                 id: u.id,
+                date: u.date,
                 time: u.time,
                 place: u.place,
                 master: u.master
