@@ -102,6 +102,12 @@ class connectedAccount extends Component {
         return new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
     };
 
+    sort = (appointments) => {
+        return appointments.sort((a, b) => {
+            return this.splitDate(a.date) < this.splitDate(b.date);
+        })
+    };
+
     render() {
         return (
             <div className="account">
@@ -150,8 +156,7 @@ class connectedAccount extends Component {
                             <div className="alert w-100" role="alert">
                                 <h4 className="alert-heading">Same place, same time!</h4>
                                 <p>It seems you've tried to make an appointment at the same date, same time, same place
-                                    and same
-                                    master!
+                                    and same master!
                                 </p>
                                 <hr/>
                                 <p className="mb-0">Please change date, time, place or master
@@ -163,7 +168,7 @@ class connectedAccount extends Component {
                             <div className="alert w-100" role="alert">
                                 <h4 className="alert-heading">Incorrect date!</h4>
                                 <p>It seems you've tried to make an appointment at the past date or haven't entered
-                                    date! You can make an appointment only at future days
+                                    date! Only future dates are allowed
                                 </p>
                                 <hr/>
                                 <p className="mb-0">Please change date, time, place or master.
@@ -193,7 +198,7 @@ class connectedAccount extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.props.appointments.map((r) => {
+                                {this.sort(this.props.appointments).map((r) => {
                                     return (
                                         <tr key={r.id}>
                                             <td className="text-center info">{r.date}</td>
