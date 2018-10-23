@@ -56,8 +56,7 @@ class connectedAccount extends Component {
         let master = this.master.value;
         let splittedDate = date.split("-");
         let appointmentDate = new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
-        let currentDate = new Date();
-        if (appointmentDate > currentDate) {
+        if (appointmentDate > new Date()) {
             let appointments = this.props.appointments;
             let found = false;
             for (let appointment of this.props.appointments) {
@@ -121,7 +120,7 @@ class connectedAccount extends Component {
                     <label className="w-25 label">Choose master</label>
                 </div>
                 <div className="input-group mt-0 px-5">
-                    <input type="date" name="bday" max="3000-12-31"
+                    <input type="date" name="appointmentday" max="3000-12-31"
                            min="2018-01-01" className="form-control" ref={(date) => this.date = date}/>
                     {
                         this.props.infoForAppointment.map((infoItem, index) => {

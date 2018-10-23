@@ -51,7 +51,7 @@ class connectedHeader extends Component {
                     <Link to="/account" className="nav-item nav-link" href="#">Account</Link>
                     {
                         ((localStorage.getItem('authenticated') === 'yes') || (this.props.isAuthenticated)) ?
-                            <Link exact to="/" onClick={this.logout} href="#" className="nav-item nav-link logout">Log
+                            <Link to="/" onClick={this.logout} href="#" className="nav-item nav-link logout">Log
                                 out</Link> :
                             <Link to="/login" className="nav-item nav-link logout" href="#">Login</Link>
                     }
