@@ -48,50 +48,80 @@ class connectedAccount extends Component {
         this.props.getAppointments();
     }
 
-    isTheSameDateTimePlaceMaster = (appointment, date, time, place, master) => {
+    convertFromDatePickerDateToDate = (date) => {
+        return new Date(Number(date[2]), Number(date[1] - 1), Number(date[0]));
+    };
+
+
+    makeAppointment = () => {
+        let date = this.date.value.split("-").reverse().join("-");
+        let appointmentDate = this.convertFromDatePickerDateToDate(date.split("-"));
+        let time = this.time.value;
+        let place = this.place.value;
+        let master = this.master.value;
+        let appointments = this.props.appointments;
+
+        if (appointmentDate < new Date() || this.date.value === '') {
+            this.setPastDateAlarm();
+            return;
+        }
+
+        if (appointments.length === 0) {
+            this.props.tryMakeAppointment(1, date, time, place, master);
+            return;
+        }
+
+        let isTheSameAppointmentFound = false;
+        for (let appointment of appointments) {
+            if (this.isTheSameAppointment(appointment, date, time, place, master)) {
+                isTheSameAppointmentFound = true;
+                this.setSamePlaceAlarm();
+                break;
+            }
+        }
+
+        if (!isTheSameAppointmentFound) {
+            appointments.sort((a, b) => b.id - a.id);
+            this.props.tryMakeAppointment(Number(appointments[0].id) + 1, date, time, place, master);
+        }
+
+    };
+
+    setPastDateAlarm = () => {
+        this.setState({
+            isPastDate: true
+        });
+        this.setState({
+            isSamePlace: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isPastDate: false
+            })
+        }, 6000);
+    };
+
+
+    setSamePlaceAlarm = () => {
+        this.setState({
+            isSamePlace: true
+        });
+        this.setState({
+            isPastDate: false
+        });
+        setTimeout(() => {
+            this.setState({
+                isSamePlace: false
+            })
+        }, 6000);
+    };
+
+
+    isTheSameAppointment = (appointment, date, time, place, master) => {
         return ((appointment.date === date) &&
             (appointment.time === time) &&
             (appointment.place === place) &&
             (appointment.master === master))
-    };
-
-    makeAppointment = () => {
-        let date = this.date.value.split("-").reverse().join("-");
-        let time = this.time.value;
-        let place = this.place.value;
-        let master = this.master.value;
-        let splittedDate = date.split("-");
-        let appointmentDate = new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
-        let isFutureDate = appointmentDate > new Date();
-        if (isFutureDate) {
-            let appointments = this.props.appointments;
-            let found = false;
-            for (let appointment of this.props.appointments) {
-                if (this.isTheSameDateTimePlaceMaster(appointment, date, time, place, master)) {
-                    found = true;
-                    this.setState({isSamePlace: true});
-                    this.setState({isPastDate: false});
-                    setTimeout(() => {
-                        this.setState({isSamePlace: false})
-                    }, 6000);
-                    break;
-                }
-            }
-            if (appointments.length === 0) {
-                this.props.tryMakeAppointment(1, date, time, place, master);
-            } else if (!found) {
-                appointments.sort((a, b) => {
-                    return b.id - a.id;
-                });
-                this.props.tryMakeAppointment(Number(appointments[0].id) + 1, date, time, place, master);
-            }
-        } else {
-            this.setState({isPastDate: true});
-            this.setState({isSamePlace: false});
-            setTimeout(() => {
-                this.setState({isPastDate: false})
-            }, 6000);
-        }
     };
 
 
@@ -107,7 +137,7 @@ class connectedAccount extends Component {
 
     sort = (appointments) => {
         return appointments.sort((a, b) => {
-            return this.splitDate(a.date) < this.splitDate(b.date);
+            return this.splitDate(b.date) - this.splitDate(a.date);
         })
     };
 
