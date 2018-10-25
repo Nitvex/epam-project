@@ -118,6 +118,7 @@ class connectedAccount extends Component {
                 <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>!
                     You can make an appointment below
                 </div>
+
                 <div className="w-100 mt-3 px-5">
                     <label className="date label">Choose date</label>
                     <label className="time label">Choose time</label>
