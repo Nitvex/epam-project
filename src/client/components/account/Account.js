@@ -49,7 +49,7 @@ class connectedAccount extends Component {
     }
 
 
-    make = () => {
+    makeAppointment = () => {
         let date = this.date.value.split("-").reverse().join("-");
         let time = this.time.value;
         let place = this.place.value;
@@ -147,7 +147,8 @@ class connectedAccount extends Component {
                         })
                     }
 
-                    <button className="input-group-append btn w-25 justify-content-center" onClick={this.make}>Make an
+                    <button className="input-group-append btn w-25 justify-content-center"
+                            onClick={this.makeAppointment}>Make an
                         appointment
                     </button>
                     {

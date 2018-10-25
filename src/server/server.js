@@ -17,7 +17,7 @@ let userAppointments = require("./constants/userAppointments");
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST,GET');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     next();
 });
@@ -59,7 +59,7 @@ app.post('/authenticate', function (req, res) {
 });
 
 
-app.post('/getappointments', function (req, res) {
+app.get('/getappointments', function (req, res) {
     if (!req.query) {
         return res.sendStatus(400)
     }
@@ -79,7 +79,7 @@ app.post('/getappointments', function (req, res) {
     res.send(appointments);
 });
 
-app.post('/cancelappointment', function (req, res) {
+app.delete('/cancelappointment', function (req, res) {
     if (!req.query) {
         return res.sendStatus(400)
     }
@@ -89,6 +89,7 @@ app.post('/cancelappointment', function (req, res) {
             userAppointments.splice(index, 1);
         }
     });
+    console.log(userAppointments);
     res.send(JSON.stringify({status: "ok"}));
 });
 
