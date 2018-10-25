@@ -48,6 +48,12 @@ class connectedAccount extends Component {
         this.props.getAppointments();
     }
 
+    isTheSameDateTimePlaceMaster = (appointment, date, time, place, master) => {
+        return ((appointment.date === date) &&
+            (appointment.time === time) &&
+            (appointment.place === place) &&
+            (appointment.master === master))
+    };
 
     makeAppointment = () => {
         let date = this.date.value.split("-").reverse().join("-");
@@ -56,14 +62,12 @@ class connectedAccount extends Component {
         let master = this.master.value;
         let splittedDate = date.split("-");
         let appointmentDate = new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
-        if (appointmentDate > new Date()) {
+        let isFutureDate = appointmentDate > new Date();
+        if (isFutureDate) {
             let appointments = this.props.appointments;
             let found = false;
             for (let appointment of this.props.appointments) {
-                if ((appointment.date === date) &&
-                    (appointment.time === time) &&
-                    (appointment.place === place) &&
-                    (appointment.master === master)) {
+                if (this.isTheSameDateTimePlaceMaster(appointment, date, time, place, master)) {
                     found = true;
                     this.setState({isSamePlace: true});
                     this.setState({isPastDate: false});
@@ -114,10 +118,11 @@ class connectedAccount extends Component {
                 <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>!
                     You can make an appointment below
                 </div>
-                <div className="w-100 mt-3 px-5 offset-2">
-                    <label className="w-20 label">Choose time</label>
-                    <label className="w-20 label">Choose place</label>
-                    <label className="w-20 label">Choose master</label>
+                <div className="w-100 mt-3 px-5">
+                    <label className="date label">Choose date</label>
+                    <label className="time label">Choose time</label>
+                    <label className="place label">Choose place</label>
+                    <label className="master label">Choose master</label>
                 </div>
                 <div className="input-group mt-0 px-5">
                     <input type="date" name="appointmentday" max="3000-12-31"
