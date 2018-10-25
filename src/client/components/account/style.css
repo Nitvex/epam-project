@@ -21,11 +21,23 @@
     width: 100%;
 }
 
-.empty{
+.empty {
     text-align: center;
     font-size: 2rem;
 }
 
-.alert{
+.alert {
     background-color: #d5a353;
+}
+
+.date {
+    width: 18%;
+}
+
+.time {
+    width: 19%;
+}
+
+.place {
+    width: 19%;
 }
