@@ -114,10 +114,10 @@ class connectedAccount extends Component {
                 <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>!
                     You can make an appointment below
                 </div>
-                <div className="w-100 mt-3 px-5">
-                    <label className="w-25 label">Choose time</label>
-                    <label className="w-25 label">Choose place</label>
-                    <label className="w-25 label">Choose master</label>
+                <div className="w-100 mt-3 px-5 offset-2">
+                    <label className="w-20 label">Choose time</label>
+                    <label className="w-20 label">Choose place</label>
+                    <label className="w-20 label">Choose master</label>
                 </div>
                 <div className="input-group mt-0 px-5">
                     <input type="date" name="appointmentday" max="3000-12-31"
