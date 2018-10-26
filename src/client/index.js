@@ -8,7 +8,7 @@ import Account from './components/account/Account';
 import Login from './components/login/Login';
 /* Routing */
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
-import {PrivateRoute} from "./components/PrivateRouter/PrivateRouter";
+import {PrivateRoute} from "./components/globalComponents/PrivateRouter/PrivateRouter";
 /* Store */
 import {Provider} from "react-redux";
 import store from "./store/index";

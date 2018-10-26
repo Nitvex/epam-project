@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
-import Header from './Header/Header';
+import Header from '../globalComponents/Header/Header';
 import Slider from './Slider/Slider';
 import Location from './Location/Location';
-import {authenticate} from "../../actions/authentication/authenticate";
-import {fetchLocations} from "../../actions/locations/fetchLocations";
+import {authenticate} from "../../store/actions/authentication/authenticate";
+import {fetchLocations} from "../../store/actions/locations/fetchLocations";
 import {connect} from "react-redux";
 
 
@@ -28,6 +28,7 @@ class connectedApp extends Component {
     }
 
     componentDidMount() {
+        console.log("here");
         if (this.props.locations.length === 0) {
             this.props.fetchLocations();
         }

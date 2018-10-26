@@ -1,6 +1,6 @@
-let express = require("express");
+const express = require("express");
 let bodyParser = require("body-parser");
-let app = express();
+const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -40,7 +40,7 @@ app.post('/makeappointment', function (req, res) {
     }
     let {username, id, date, time, place, master} = req.query;
     userAppointments.push({username, id, date, time, place, master});
-    res.send(JSON.stringify({status: "ok"}));
+    res.json({status: "ok"});
 });
 
 app.post('/authenticate', function (req, res) {
@@ -55,7 +55,7 @@ app.post('/authenticate', function (req, res) {
             break;
         }
     }
-    found ? res.send(JSON.stringify({status: "ok"})) : res.send(JSON.stringify({status: "not_found"}));
+    found ? res.json({status: "ok"}) : res.json({status: "not_found"});
 });
 
 
@@ -89,8 +89,7 @@ app.delete('/cancelappointment', function (req, res) {
             userAppointments.splice(index, 1);
         }
     });
-    console.log(userAppointments);
-    res.send(JSON.stringify({status: "ok"}));
+    res.json({status: "ok"});
 });
 
 

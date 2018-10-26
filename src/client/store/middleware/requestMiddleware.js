@@ -20,7 +20,8 @@ export const requestMiddleware = ({dispatch}) => next => action => {
 
     if (action.type === TRY_AUTHENTICATE) {
         requestOptions.method = 'POST';
-        fetch(`http://127.0.0.1:3000/authenticate?username=${action.payload.username}&password=${action.payload.password}`, requestOptions).then((response) => {
+        fetch(`http://127.0.0.1:3000/authenticate?username=${action.payload.username}&password=${action.payload.password}`,
+            requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {
@@ -38,7 +39,8 @@ export const requestMiddleware = ({dispatch}) => next => action => {
         requestOptions.method = 'POST';
         let user = localStorage.getItem('user');
         let {id, date, time, place, master} = action.payload;
-        fetch(`http://127.0.0.1:3000/makeappointment?username=${user}&id=${id}&date=${date}&time=${time}&place=${place}&master=${master}`, requestOptions).then((response) => {
+        fetch(`http://127.0.0.1:3000/makeappointment?username=${user}&id=${id}&date=${date}&time=${time}&place=${place}&master=${master}`,
+            requestOptions).then((response) => {
             return response.json();
         }).then((res) => {
             if (res.status.toString() === "ok") {

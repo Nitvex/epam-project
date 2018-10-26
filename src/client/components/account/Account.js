@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {tryMakeAppointment} from '../../actions/trying/tryMakeAppointment';
-import {tryCancelAppointment} from '../../actions/trying/tryCancelAppointment';
-import {fetchInfo} from "../../actions/info/fetchInfo";
-import {getAppointments} from "../../actions/appointments/getAppointments";
-import Header from '../main/Header/Header';
+import {tryMakeAppointment} from '../../store/actions/trying/tryMakeAppointment';
+import {tryCancelAppointment} from '../../store/actions/trying/tryCancelAppointment';
+import {fetchInfo} from "../../store/actions/info/fetchInfo";
+import {getAppointments} from "../../store/actions/appointments/getAppointments";
+import Header from '../globalComponents/Header/Header';
 import './style.css';
 
 const mapStateToProps = ({informationReducer, appointmentsReducer}) => {
@@ -23,8 +23,12 @@ const mapStateToProps = ({informationReducer, appointmentsReducer}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        tryMakeAppointment: (id, date, time, place, master) => dispatch(tryMakeAppointment(id, date, time, place, master)),
-        tryCancelAppointment: (id, date, time, place, master) => dispatch(tryCancelAppointment(id, date, time, place, master)),
+        tryMakeAppointment: (id, date, time, place, master) => {
+            dispatch(tryMakeAppointment(id, date, time, place, master))
+        },
+        tryCancelAppointment: (id, date, time, place, master) => {
+            dispatch(tryCancelAppointment(id, date, time, place, master))
+        },
         fetchInfo: () => dispatch(fetchInfo()),
         getAppointments: () => dispatch(getAppointments()),
     };
@@ -62,7 +66,7 @@ class connectedAccount extends Component {
         let appointments = this.props.appointments;
 
         if (appointmentDate < new Date() || this.date.value === '') {
-            this.setPastDateAlarm();
+            this.showPastDateWarning();
             return;
         }
 
@@ -75,7 +79,7 @@ class connectedAccount extends Component {
         for (let appointment of appointments) {
             if (this.isTheSameAppointment(appointment, date, time, place, master)) {
                 isTheSameAppointmentFound = true;
-                this.setSamePlaceAlarm();
+                this.showTheSameAppointmentWarning();
                 break;
             }
         }
@@ -87,7 +91,7 @@ class connectedAccount extends Component {
 
     };
 
-    setPastDateAlarm = () => {
+    showPastDateWarning = () => {
         this.setState({
             isPastDate: true
         });
@@ -102,7 +106,7 @@ class connectedAccount extends Component {
     };
 
 
-    setSamePlaceAlarm = () => {
+    showTheSameAppointmentWarning = () => {
         this.setState({
             isSamePlace: true
         });
