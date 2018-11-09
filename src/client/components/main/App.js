@@ -28,7 +28,6 @@ class connectedApp extends Component {
     }
 
     componentDidMount() {
-        console.log("here");
         if (this.props.locations.length === 0) {
             this.props.fetchLocations();
         }

@@ -45,6 +45,9 @@ module.exports = {
         contentBase: './public',
         hot: true
     },
+    optimization: {
+        usedExports: true
+    },
     plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({

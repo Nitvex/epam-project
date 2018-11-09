@@ -1,5 +1,8 @@
 {
   "name": "epam-project",
+  "sideEffects": [
+    "*.css"
+  ],
   "version": "0.1.0",
   "private": true,
   "dependencies": {

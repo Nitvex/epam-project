@@ -33,11 +33,10 @@ class connectedLogin extends Component {
         this.props.resetInput();
     }
 
-    formSubmit = (event) => {
+    formSubmit = () => {
         let username = this.username.value;
         let password = this.password.value;
         this.props.tryAuthenticate(username, password);
-        event.preventDefault();
     };
 
     render() {
