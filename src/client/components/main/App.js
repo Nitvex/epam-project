@@ -36,7 +36,7 @@ class connectedApp extends Component {
     render() {
         return (
             <div className="app">
-                <Header/>
+                <Header activePage="mainPage"/>
                 <Slider/>
                 <div className="our-locations"><h1><span>Our locations</span></h1></div>
                 <div className="locations">

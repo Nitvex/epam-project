@@ -148,7 +148,7 @@ class connectedAccount extends Component {
     render() {
         return (
             <div className="account">
-                <Header/>
+                <Header activePage="account"/>
                 <div className="ml-5 mt-3 hey">Hey, <span className="username">{localStorage.getItem('user')}</span>!
                     You can make an appointment below
                 </div>

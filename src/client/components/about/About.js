@@ -12,7 +12,7 @@ class About extends Component {
     render() {
         return (
             <div>
-                <Header/>
+                <Header activePage="about"/>
                 <div className="about">
                     <img className="w-50" src={require('../../assets/images/about.jpg')}
                          alt="About"/>

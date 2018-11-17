@@ -61,7 +61,7 @@ class connectedLogin extends Component {
         }
         return (
             <div>
-                <Header/>
+                <Header activePage="login"/>
                 <div className="login">
                     <img className="w-50" src={require('../../assets/images/login.jpg')} alt="login_picture"/>
                     <form className="form w-50" onSubmit={(event) => this.formSubmit(event)}>

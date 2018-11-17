@@ -27,7 +27,12 @@
 }
 
 .mustache {
-   float:left;
-   padding: 0 !important;
-   margin: -15px 5px;
+    float: left;
+    padding: 0 !important;
+    margin: -15px 5px;
+}
+
+.nav-item.nav-link.current-page {
+    font-weight: bold;
+    color: white;
 }
