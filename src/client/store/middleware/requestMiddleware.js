@@ -11,7 +11,7 @@ import {cancelAppointment} from "../actions/appointments/cancelAppointment";
 
 export const requestMiddleware = ({dispatch}) => next => action => {
 
-    let requestOptions = {
+    const requestOptions = {
         headers: new Headers(),
         mode: 'cors',
         cache: 'default',
@@ -37,8 +37,8 @@ export const requestMiddleware = ({dispatch}) => next => action => {
 
     if (action.type === TRY_MAKE_APPOINTMENT) {
         requestOptions.method = 'POST';
-        let user = localStorage.getItem('user');
-        let {id, date, time, place, master} = action.payload;
+        const user = localStorage.getItem('user');
+        const {id, date, time, place, master} = action.payload;
         fetch(`http://127.0.0.1:3000/makeappointment?username=${user}&id=${id}&date=${date}&time=${time}&place=${place}&master=${master}`,
             requestOptions).then((response) => {
             return response.json();
@@ -52,8 +52,8 @@ export const requestMiddleware = ({dispatch}) => next => action => {
 
     if (action.type === TRY_CANCEL_APPOINTMENT) {
         requestOptions.method = 'DELETE';
-        let user = localStorage.getItem('user');
-        let {id, date, time, place, master} = action.payload;
+        const user = localStorage.getItem('user');
+        const {id, date, time, place, master} = action.payload;
         fetch(`http://127.0.0.1:3000/cancelappointment?username=${user}&id=${id}`, requestOptions).then((response) => {
             return response.json();
         }).then((res) => {

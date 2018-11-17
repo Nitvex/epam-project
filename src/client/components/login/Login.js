@@ -34,8 +34,8 @@ class connectedLogin extends Component {
     }
 
     formSubmit = () => {
-        let username = this.username.value;
-        let password = this.password.value;
+        const username = this.username.value;
+        const password = this.password.value;
         this.props.tryAuthenticate(username, password);
     };
 

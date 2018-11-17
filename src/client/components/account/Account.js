@@ -58,12 +58,12 @@ class connectedAccount extends Component {
 
 
     makeAppointment = () => {
-        let date = this.date.value.split("-").reverse().join("-");
-        let appointmentDate = this.convertFromDatePickerDateToDate(date.split("-"));
-        let time = this.time.value;
-        let place = this.place.value;
-        let master = this.master.value;
-        let appointments = this.props.appointments;
+        const date = this.date.value.split("-").reverse().join("-");
+        const appointmentDate = this.convertFromDatePickerDateToDate(date.split("-"));
+        const time = this.time.value;
+        const place = this.place.value;
+        const master = this.master.value;
+        const appointments = this.props.appointments;
 
         if (appointmentDate < new Date() || this.date.value === '') {
             this.showPastDateWarning();
@@ -76,7 +76,7 @@ class connectedAccount extends Component {
         }
 
         let isTheSameAppointmentFound = false;
-        for (let appointment of appointments) {
+        for (const appointment of appointments) {
             if (this.isTheSameAppointment(appointment, date, time, place, master)) {
                 isTheSameAppointmentFound = true;
                 this.showTheSameAppointmentWarning();
@@ -130,12 +130,12 @@ class connectedAccount extends Component {
 
 
     cancel = (appointment) => {
-        let {id, date, time, place, master} = appointment;
+        const {id, date, time, place, master} = appointment;
         this.props.tryCancelAppointment(id, date, time, place, master);
     };
 
     splitDate = (date) => {
-        let splittedDate = date.split("-");
+        const splittedDate = date.split("-");
         return new Date(Number(splittedDate[2]), Number(splittedDate[1] - 1), Number(splittedDate[0]));
     };
 

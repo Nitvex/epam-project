@@ -6,7 +6,7 @@ import {deleteAppointments} from "../actions/appointments/deleteAppointments";
 
 
 export const fetchMiddleware = ({dispatch}) => next => action => {
-    let requestOptions = {
+    const requestOptions = {
         method: 'GET',
         headers: new Headers(),
         mode: 'cors',
@@ -29,7 +29,7 @@ export const fetchMiddleware = ({dispatch}) => next => action => {
             actionObject.method = addLocations;
             break;
         case GET_APPOINTMENTS:
-            let user = localStorage.getItem('user');
+            const user = localStorage.getItem('user');
             fetch(`http://127.0.0.1:3000/getappointments?username=${user}`, requestOptions).then((response) => {
                 return response.json();
             }).then((appointments) => {

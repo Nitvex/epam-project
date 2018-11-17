@@ -9,7 +9,7 @@ export default function appointmentsReducer(state = initialState, action) {
         case MAKE_APPOINTMENT:
             return {...state, appointments: [...state.appointments, action.payload]};
         case CANCEL_APPOINTMENT:
-            let appointments = [...state.appointments].filter((r) => {
+            const appointments = [...state.appointments].filter((r) => {
                 return r.id !== action.payload.id
             });
             return {...state, appointments: [...appointments]};
