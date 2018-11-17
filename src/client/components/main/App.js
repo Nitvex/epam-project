@@ -38,7 +38,7 @@ class connectedApp extends Component {
             <div className="app">
                 <Header activePage="mainPage"/>
                 <Slider/>
-                <div className="our-locations"><h1><span>Our locations</span></h1></div>
+                <div className="subheader"><h1><span>Our locations</span></h1></div>
                 <div className="locations">
                     {
                         this.props.locations.map((location) => {

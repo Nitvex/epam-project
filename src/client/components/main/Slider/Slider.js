@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './style.css';
 
 
-class Slider extends Component {
-    render() {
+const Slider = () => {
         return (
             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
@@ -55,7 +54,6 @@ class Slider extends Component {
 
 
         );
-    }
-}
+};
 
 export default Slider;

@@ -1,15 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Header from '../globalComponents/Header/Header';
 import './style.css';
 
-class About extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-
-    render() {
+const About = () => {
         return (
             <div>
                 <Header activePage="about"/>
@@ -38,8 +31,7 @@ class About extends Component {
                 </div>
             </div>
         );
-    }
-}
+};
 
 export default About;
 

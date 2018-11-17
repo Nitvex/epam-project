@@ -4,12 +4,12 @@
 }
 
 
-.our-locations {
+.subheader {
     background-color: #f9eed1;
     padding: 50px 20px;
     text-align: center;
 }
-.our-locations h1 {
+.subheader h1 {
     font-weight: normal;
     font-family: 'Merriweather', serif;
     position: relative;
@@ -20,8 +20,8 @@
     font-size: 40px;
     padding: .4em 1em .55em;
 }
-.our-locations h1:before,
-.our-locations h1:after {
+.subheader h1:before,
+.subheader h1:after {
     content: "";
     position: absolute;
     width: 60%;
@@ -29,17 +29,17 @@
     background: #d5a353;
 }
 
-.our-locations h1:before {
+.subheader h1:before {
     left: 0;
     top: 0;
 }
-.our-locations h1:after {
+.subheader h1:after {
     right: 0;
     bottom: 0;
 }
 
-.our-locations h1 span:before,
-.our-locations h1 span:after {
+.subheader h1 span:before,
+.subheader h1 span:after {
     content: "";
     position: absolute;
     width: .65em;
@@ -49,11 +49,11 @@
     box-sizing: border-box;
 }
 
-.our-locations h1 span:before {
+.subheader h1 span:before {
     top: -.55em;
     left: -.325em;
 }
-.our-locations h1 span:after {
+.subheader h1 span:after {
     bottom: -.55em;
     right: -.325em;
 }
