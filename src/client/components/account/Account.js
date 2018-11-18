@@ -180,9 +180,13 @@ class connectedAccount extends Component {
                                             break;
                                     }
                                 }}>
-                                    {infoItem.map((option) => {
-                                        return <option key={option}>{option}</option>
-                                    })}
+                                    {
+                                        infoItem.map((option) => {
+                                            return option.name ?
+                                                <option key={option.name}>{option.name}</option>
+                                                :
+                                                <option key={option}>{option}</option>
+                                        })}
                                 </select>)
                         })
                     }

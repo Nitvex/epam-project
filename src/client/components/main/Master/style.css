@@ -1,0 +1,19 @@
+.master {
+    display: flex;
+    flex-direction: row;
+    height: 70vh;
+
+}
+
+.head {
+    font-size: 4rem;
+    color: #d5a353;
+}
+
+.description {
+    font-size: 2rem;
+}
+
+.text{
+    padding: 1rem;
+}

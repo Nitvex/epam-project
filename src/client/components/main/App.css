@@ -3,12 +3,12 @@
     background-color: #f9eed1;
 }
 
-
 .subheader {
     background-color: #f9eed1;
     padding: 50px 20px;
     text-align: center;
 }
+
 .subheader h1 {
     font-weight: normal;
     font-family: 'Merriweather', serif;
@@ -20,6 +20,7 @@
     font-size: 40px;
     padding: .4em 1em .55em;
 }
+
 .subheader h1:before,
 .subheader h1:after {
     content: "";
@@ -33,6 +34,7 @@
     left: 0;
     top: 0;
 }
+
 .subheader h1:after {
     right: 0;
     bottom: 0;
@@ -53,7 +55,16 @@
     top: -.55em;
     left: -.325em;
 }
+
 .subheader h1 span:after {
     bottom: -.55em;
     right: -.325em;
+}
+
+.login-btn {
+    font-size: 1.5rem;
+    background-color: #d5a353;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    width: 80%;
 }
