@@ -6,6 +6,7 @@ import {deleteAppointments} from "../actions/appointments/deleteAppointments";
 
 
 export const fetchMiddleware = ({dispatch}) => next => action => {
+
     const requestOptions = {
         method: 'GET',
         headers: new Headers(),

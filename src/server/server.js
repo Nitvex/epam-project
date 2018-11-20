@@ -34,7 +34,6 @@ app.get('/locations', function (req, res) {
 });
 
 
-
 app.post('/makeappointment', function (req, res) {
     if (!req.query) {
         return res.sendStatus(400)

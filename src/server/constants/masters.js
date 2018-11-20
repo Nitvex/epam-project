@@ -19,7 +19,7 @@ module.exports = [
     {
         name: "Larry",
         description: "Do you like tattoes? Style? Fashion clothes?" +
-        "This guy knows everything about them. Don't think about girly " +
+        "This guy knows everything about them. Don't think about girlie " +
         "things. This guy will teach you true male style.",
         photo: "Larry"
     },

@@ -75,27 +75,22 @@ class connectedAccount extends Component {
             return;
         }
 
-        let isTheSameAppointmentFound = false;
         for (const appointment of appointments) {
             if (this.isTheSameAppointment(appointment, date, time, place, master)) {
-                isTheSameAppointmentFound = true;
                 this.showTheSameAppointmentWarning();
-                break;
+                return;
             }
         }
 
-        if (!isTheSameAppointmentFound) {
-            appointments.sort((a, b) => b.id - a.id);
-            this.props.tryMakeAppointment(Number(appointments[0].id) + 1, date, time, place, master);
-        }
+
+        appointments.sort((a, b) => b.id - a.id);
+        this.props.tryMakeAppointment(Number(appointments[0].id) + 1, date, time, place, master);
 
     };
 
     showPastDateWarning = () => {
         this.setState({
-            isPastDate: true
-        });
-        this.setState({
+            isPastDate: true,
             isSamePlace: false
         });
         setTimeout(() => {
@@ -108,9 +103,7 @@ class connectedAccount extends Component {
 
     showTheSameAppointmentWarning = () => {
         this.setState({
-            isSamePlace: true
-        });
-        this.setState({
+            isSamePlace: true,
             isPastDate: false
         });
         setTimeout(() => {
