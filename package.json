@@ -45,7 +45,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "webpack-dev-server --open",
-    "wpb": "webpack"
+    "wpb": "webpack",
+    "srv": "node src/server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

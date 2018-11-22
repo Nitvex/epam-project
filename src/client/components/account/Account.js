@@ -93,11 +93,6 @@ class connectedAccount extends Component {
             isPastDate: true,
             isSamePlace: false
         });
-        setTimeout(() => {
-            this.setState({
-                isPastDate: false
-            })
-        }, 6000);
     };
 
 
@@ -106,11 +101,13 @@ class connectedAccount extends Component {
             isSamePlace: true,
             isPastDate: false
         });
-        setTimeout(() => {
-            this.setState({
-                isSamePlace: false
-            })
-        }, 6000);
+    };
+
+    dismissWarning = () => {
+        this.setState({
+            isSamePlace: false,
+            isPastDate: false
+        });
     };
 
 
@@ -190,8 +187,15 @@ class connectedAccount extends Component {
                     </button>
                     {
                         (this.state.isSamePlace) ?
-                            <div className="alert w-100" role="alert">
-                                <h4 className="alert-heading">Same place, same time!</h4>
+                            <div className="alert w-100 mt-2" role="alert">
+                                <h4 className="alert-heading">Same place, same time!
+                                    <button type="button"
+                                            className="close"
+                                            aria-label="Close"
+                                            onClick={this.dismissWarning}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </h4>
                                 <p>It seems you've tried to make an appointment at the same date, same time, same place
                                     and same master!
                                 </p>
@@ -202,8 +206,15 @@ class connectedAccount extends Component {
                     }
                     {
                         (this.state.isPastDate) ?
-                            <div className="alert w-100" role="alert">
-                                <h4 className="alert-heading">Incorrect date!</h4>
+                            <div className="alert w-100 mt-2" role="alert">
+                                <h4 className="alert-heading">Incorrect date!
+                                    <button type="button"
+                                            className="close"
+                                            aria-label="Close"
+                                            onClick={this.dismissWarning}>
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </h4>
                                 <p>It seems you've tried to make an appointment at the past date or haven't entered
                                     date! Only future dates are allowed
                                 </p>
@@ -235,17 +246,17 @@ class connectedAccount extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {this.sort(this.props.appointments).map((r) => {
+                                {this.sort(this.props.appointments).map((a) => {
                                     return (
-                                        <tr key={r.id}>
-                                            <td className="text-center info">{r.date}</td>
-                                            <td className="text-center info">{r.time}</td>
-                                            <td className="text-center info">{r.place}</td>
-                                            <td className="text-center info">{r.master}</td>
+                                        <tr key={a.id}>
+                                            <td className="text-center info">{a.date}</td>
+                                            <td className="text-center info">{a.time}</td>
+                                            <td className="text-center info">{a.place}</td>
+                                            <td className="text-center info">{a.master}</td>
                                             <td>
-                                                {new Date(this.splitDate(r.date)) > new Date() ?
+                                                {new Date(this.splitDate(a.date)) > new Date() ?
                                                     <button className="btn-primary button"
-                                                            onClick={this.cancel.bind(this, r)}>
+                                                            onClick={this.cancel.bind(this, a)}>
                                                         Cancel
                                                     </button> :
                                                     <button className="btn-secondary button">
