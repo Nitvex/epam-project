@@ -60,7 +60,7 @@ class connectedLogin extends Component {
                 break;
         }
         return (
-            <div>
+            <React.Fragment>
                 <Header activePage="login"/>
                 <div className="login">
                     <img className="w-50" src={require('../../assets/images/login.jpg')} alt="login_picture"/>
@@ -96,7 +96,7 @@ class connectedLogin extends Component {
                     </form>
                 </div>
 
-            </div>
+            </React.Fragment>
         );
     }
 }

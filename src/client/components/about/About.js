@@ -4,7 +4,7 @@ import './style.css';
 
 const About = () => {
         return (
-            <div>
+            <React.Fragment>
                 <Header activePage="about"/>
                 <div className="about">
                     <img className="w-50" src={require('../../assets/images/about.jpg')}
@@ -29,7 +29,7 @@ const About = () => {
                         - When you leave, you will definitely come back.
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
 };
 

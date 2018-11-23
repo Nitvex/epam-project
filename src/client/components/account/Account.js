@@ -219,7 +219,7 @@ class connectedAccount extends Component {
                                     date! Only future dates are allowed
                                 </p>
                                 <hr/>
-                                <p className="mb-0">Please change date, time, place or master.
+                                <p className="mb-0">Please input correct date.
                                 </p>
                             </div> : ''
                     }
@@ -228,8 +228,7 @@ class connectedAccount extends Component {
                     this.props.appointments.length === 0 ?
                         <p className="empty mt-5">Hmmm, it's empty here. Did you try to make an appointment?</p>
                         :
-                        <div>
-
+                        <React.Fragment>
                             <p className="text-center mt-3 text-uppercase text-black">You've made appointments for the
                                 following</p>
                             <p className="ml-5 text-black-50">Note: if you can't come, please notify us by phone or
@@ -270,7 +269,7 @@ class connectedAccount extends Component {
                                 })}
                                 </tbody>
                             </table>
-                        </div>
+                        </React.Fragment>
                 }
 
             </div>
